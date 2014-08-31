@@ -1,0 +1,11 @@
+--- ./feeds/luci/applications/luci-wol/luasrc/model/cbi/wol.lua	2014-08-24 12:43:12.626331497 +0800
++++ ./feeds/luci/applications/luci-wol/luasrc/model/cbi/wol.lua	2014-07-09 20:11:26.000000000 +0800
+@@ -28,7 +28,7 @@ s = m:section(SimpleSection)
+ 
+ if has_ewk and has_wol then
+ 	bin = s:option(ListValue, "binary", translate("WoL program"),
+-		translate("Sometimes only one of the two tools works. If one fails, try the other one"))
++		translate("Sometimes only one of both tools work. If one of fails, try the other one"))
+ 
+ 	bin:value("/usr/bin/etherwake", "Etherwake")
+ 	bin:value("/usr/bin/wol", "WoL")

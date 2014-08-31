@@ -1,0 +1,98 @@
+--- ./package/utils/busybox/Config-defaults.in	2014-08-24 12:42:13.000000000 +0800
++++ ./package/utils/busybox/Config-defaults.in	2014-08-24 13:47:47.325889805 +0800
+@@ -1125,13 +1125,13 @@ config BUSYBOX_DEFAULT_USE_BB_CRYPT_SHA
+ 	default n
+ config BUSYBOX_DEFAULT_ADDUSER
+ 	bool
+-	default n
++	default y
+ config BUSYBOX_DEFAULT_FEATURE_ADDUSER_LONG_OPTIONS
+ 	bool
+-	default n
++	default y
+ config BUSYBOX_DEFAULT_FEATURE_CHECK_NAMES
+ 	bool
+-	default n
++	default y
+ config BUSYBOX_DEFAULT_FIRST_SYSTEM_ID
+ 	int
+ 	default 0
+@@ -1140,13 +1140,13 @@ config BUSYBOX_DEFAULT_LAST_SYSTEM_ID
+ 	default 0
+ config BUSYBOX_DEFAULT_ADDGROUP
+ 	bool
+-	default n
++	default y
+ config BUSYBOX_DEFAULT_FEATURE_ADDGROUP_LONG_OPTIONS
+ 	bool
+-	default n
++	default y
+ config BUSYBOX_DEFAULT_FEATURE_ADDUSER_TO_GROUP
+ 	bool
+-	default n
++	default y
+ config BUSYBOX_DEFAULT_DELUSER
+ 	bool
+ 	default n
+@@ -1350,13 +1350,13 @@ config BUSYBOX_DEFAULT_FDFORMAT
+ 	default n
+ config BUSYBOX_DEFAULT_FDISK
+ 	bool
+-	default n
++	default y
+ config BUSYBOX_DEFAULT_FDISK_SUPPORT_LARGE_DISKS
+ 	bool
+-	default n
++	default y
+ config BUSYBOX_DEFAULT_FEATURE_FDISK_WRITABLE
+ 	bool
+-	default n
++	default y
+ config BUSYBOX_DEFAULT_FEATURE_AIX_LABEL
+ 	bool
+ 	default n
+@@ -1371,7 +1371,7 @@ config BUSYBOX_DEFAULT_FEATURE_OSF_LABEL
+ 	default n
+ config BUSYBOX_DEFAULT_FEATURE_GPT_LABEL
+ 	bool
+-	default n
++	default y
+ config BUSYBOX_DEFAULT_FEATURE_FDISK_ADVANCED
+ 	bool
+ 	default n
+@@ -2187,7 +2187,7 @@ config BUSYBOX_DEFAULT_TRACEROUTE
+ 	default y
+ config BUSYBOX_DEFAULT_TRACEROUTE6
+ 	bool
+-	default n
++	default y
+ config BUSYBOX_DEFAULT_FEATURE_TRACEROUTE_VERBOSE
+ 	bool
+ 	default y
+@@ -2259,7 +2259,7 @@ config BUSYBOX_DEFAULT_VCONFIG
+ 	default y
+ config BUSYBOX_DEFAULT_WGET
+ 	bool
+-	default y
++	default n
+ config BUSYBOX_DEFAULT_FEATURE_WGET_STATUSBAR
+ 	bool
+ 	default y
+@@ -2304,7 +2304,7 @@ config BUSYBOX_DEFAULT_FEATURE_REFORMIME
+ 	default n
+ config BUSYBOX_DEFAULT_SENDMAIL
+ 	bool
+-	default n
++	default y
+ config BUSYBOX_DEFAULT_IOSTAT
+ 	bool
+ 	default n
+@@ -2409,7 +2409,7 @@ config BUSYBOX_DEFAULT_FEATURE_PS_UNUSUA
+ 	default n
+ config BUSYBOX_DEFAULT_RENICE
+ 	bool
+-	default n
++	default y
+ config BUSYBOX_DEFAULT_BB_SYSCTL
+ 	bool
+ 	default y

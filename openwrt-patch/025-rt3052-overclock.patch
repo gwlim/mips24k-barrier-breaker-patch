@@ -1,0 +1,18 @@
+--- /dev/null	2014-08-27 00:02:10.709192885 +0800
++++ ./target/linux/ramips/patches-3.10/0000-rt305x_oc.patch	2014-07-09 20:32:27.000000000 +0800
+@@ -0,0 +1,15 @@
++--- a/arch/mips/ralink/rt305x.c
+++++ b/arch/mips/ralink/rt305x.c
++@@ -171,10 +171,10 @@ void __init ralink_clk_init(void)
++ 			cpu_rate = 320000000;
++ 			break;
++ 		case RT305X_SYSCFG_CPUCLK_HIGH:
++-			cpu_rate = 384000000;
+++			cpu_rate = 432000000;
++ 			break;
++ 		}
++-		sys_rate = uart_rate = wdt_rate = cpu_rate / 3;
+++		sys_rate = uart_rate = wdt_rate = cpu_rate / 3;
++ 	} else if (soc_is_rt3352()) {
++ 		t = (t >> RT3352_SYSCFG0_CPUCLK_SHIFT) &
++ 		     RT3352_SYSCFG0_CPUCLK_MASK;

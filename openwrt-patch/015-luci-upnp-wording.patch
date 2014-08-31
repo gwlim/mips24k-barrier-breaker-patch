@@ -1,0 +1,11 @@
+--- ./feeds/luci/applications/luci-upnp/luasrc/controller/upnp.lua	2014-08-24 12:43:12.623331467 +0800
++++ ./feeds/luci/applications/luci-upnp/luasrc/controller/upnp.lua	2014-07-09 20:11:28.000000000 +0800
+@@ -21,7 +21,7 @@ function index()
+ 
+ 	local page
+ 
+-	page = entry({"admin", "services", "upnp"}, cbi("upnp/upnp"), _("UPNP"))
++	page = entry({"admin", "services", "upnp"}, cbi("upnp/upnp"), _("UPnP"))
+ 	page.dependent = true
+ 
+ 	entry({"admin", "services", "upnp", "status"}, call("act_status")).leaf = true

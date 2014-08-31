@@ -1,0 +1,10 @@
+--- ./package/network/config/firewall/files/firewall.config	2014-08-24 12:42:13.000000000 +0800
++++ ./package/network/config/firewall/files/firewall.config	2014-08-25 21:16:04.789174030 +0800
+@@ -21,7 +21,6 @@ config zone
+ 	option output		ACCEPT
+ 	option forward		REJECT
+ 	option masq		1
+-	option mtu_fix		1
+ 
+ config forwarding
+ 	option src		lan

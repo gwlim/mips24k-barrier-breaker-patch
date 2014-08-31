@@ -1,0 +1,29 @@
+--- ./feeds/luci/contrib/package/luci/Makefile	2014-08-24 12:43:12.000000000 +0800
++++ ./feeds/luci/contrib/package/luci/Makefile	2014-08-26 20:46:38.067039349 +0800
+@@ -39,7 +39,7 @@ define Package/luci-base
+   URL:=http://luci.subsignal.org/
+   MAINTAINER:=LuCI Development Team <luci@lists.subsignal.org>
+   SUBMENU:=8. Libraries
+-  DEPENDS:=+lua +libuci-lua +libubus-lua
++  DEPENDS:=+lua +libuci-lua +libubus-lua +libopenssl
+   TITLE:=LuCI core libraries
+ endef
+ 
+@@ -47,15 +47,13 @@ define Package/luci-base/install
+ 	$(call Package/luci/install/template,$(1),modules/base)
+ 	$(PKG_BUILD_DIR)/build/mkversion.sh $(1)/usr/lib/lua/luci/version.lua \
+ 		"OpenWrt Firmware" \
+-		"$(OPENWRTVERSION)" \
+-		"trunk" \
+-		"$(PKG_VERSION)"
++		"$(OPENWRTVERSION)"
+ endef
+ 
+ define Package/luci-base/config
+        choice
+                prompt "Build Target"
+-               default PACKAGE_luci-base_source
++               default PACKAGE_luci-base_compile
+ 
+        config PACKAGE_luci-base_compile
+                bool "Precompiled"

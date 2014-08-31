@@ -1,0 +1,37 @@
+--- /dev/null	2014-08-24 22:27:46.508652007 +0800
++++ ./target/linux/generic/patches-3.10/991-ltq-optimization.patch	2014-07-09 20:09:40.000000000 +0800
+@@ -0,0 +1,34 @@
++--- a/include/uapi/linux/limits.h
+++++ b/include/uapi/linux/limits.h
++@@ -3,7 +3,7 @@
++ 
++ #define NR_OPEN	        1024
++ 
++-#define NGROUPS_MAX    65536	/* supplemental group IDs are available */
+++#define NGROUPS_MAX       64	/* supplemental group IDs are available */
++ #define ARG_MAX       131072	/* # bytes of args + environ for exec() */
++ #define LINK_MAX         127	/* # links a file may have */
++ #define MAX_CANON        255	/* size of the canonical input queue */
++
++--- b/net/netfilter/nf_conntrack_ftp.c
+++++ a/net/netfilter/nf_conntrack_ftp.c
++@@ -565,7 +565,7 @@ static int __init nf_conntrack_ftp_init(
++ {
++ 	int i, j = -1, ret = 0;
++ 
++-	ftp_buffer = kmalloc(65536, GFP_KERNEL);
+++	ftp_buffer = kmalloc(32768, GFP_KERNEL);
++ 	if (!ftp_buffer)
++ 		return -ENOMEM;
++ 
++--- b/net/netfilter/nf_conntrack_h323_main.c
+++++ a/net/netfilter/nf_conntrack_h323_main.c
++@@ -1846,7 +1846,7 @@ static int __init nf_conntrack_h323_init
++ {
++ 	int ret;
++ 
++-	h323_buffer = kmalloc(65536, GFP_KERNEL);
+++	h323_buffer = kmalloc(32768, GFP_KERNEL);
++ 	if (!h323_buffer)
++ 		return -ENOMEM;
++ 	ret = nf_conntrack_helper_register(&nf_conntrack_helper_h245);

@@ -1,0 +1,22 @@
+--- ./package/Makefile	2014-08-24 12:42:13.000000000 +0800
++++ ./package/Makefile	2014-08-24 14:44:01.837299871 +0800
+@@ -119,7 +119,18 @@ $(curdir)/install: $(TMP_DIR)/.build
+ 	rm -f $(TARGET_DIR)/usr/lib/opkg/info/*.postinst
+ 	$(if $(CONFIG_CLEAN_IPKG),rm -rf $(TARGET_DIR)/usr/lib/opkg)
+ 	$(call mklibs)
+-
++	rm $(TARGET_DIR)/etc/rc.d/S50hd-idle
++	rm $(TARGET_DIR)/etc/rc.d/S50p910nd
++	rm $(TARGET_DIR)/etc/rc.d/S50qos
++	rm $(TARGET_DIR)/etc/rc.d/S50tinyproxy
++	rm $(TARGET_DIR)/etc/rc.d/S50vsftpd
++	rm $(TARGET_DIR)/etc/rc.d/S60etherwake
++	rm $(TARGET_DIR)/etc/rc.d/S60samba
++	rm $(TARGET_DIR)/etc/rc.d/S60xl2tpd
++	rm $(TARGET_DIR)/etc/rc.d/S82freifunk-p2pblock
++	rm $(TARGET_DIR)/etc/rc.d/S95ddns
++	rm $(TARGET_DIR)/etc/rc.d/S95miniupnpd
++	rm $(TARGET_DIR)/etc/rc.d/S99igmpproxy
+ PASSOPT=""
+ PASSARG=""
+ ifndef CONFIG_OPKGSMIME_PASSPHRASE

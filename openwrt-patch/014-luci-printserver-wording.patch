@@ -1,0 +1,32 @@
+--- ./feeds/luci/applications/luci-p910nd/luasrc/model/cbi/p910nd.lua	2014-08-24 12:43:12.608331314 +0800
++++ ./feeds/luci/applications/luci-p910nd/luasrc/model/cbi/p910nd.lua	2014-07-09 20:11:28.000000000 +0800
+@@ -16,8 +16,8 @@ local uci = luci.model.uci.cursor_state(
+ local net = require "luci.model.network"
+ local m, s, p, b
+ 
+-m = Map("p910nd", translate("p910nd - Printer server"),
+-        translatef("First you have to install the packages to get support for USB (kmod-usb-printer) or parallel port (kmod-lp)."))
++m = Map("p910nd", translate("Printer Server"),
++        translatef("p910nd Printer Server is a small non-spooling printer daemon intended for disk-less workstations."))
+ 
+ net = net.init(m.uci)
+ 
+@@ -25,7 +25,7 @@ s = m:section(TypedSection, "p910nd", tr
+ s.addremove = true
+ s.anonymous = true
+ 
+-s:option(Flag, "enabled", translate("enable"))
++s:option(Flag, "enabled", translate("Enable"))
+ 
+ s:option(Value, "device", translate("Device")).rmempty = true
+ 
+--- ./feeds/luci/applications/luci-p910nd/luasrc/controller/p910nd.lua	2014-08-24 12:43:12.607331304 +0800
++++ ./feeds/luci/applications/luci-p910nd/luasrc/controller/p910nd.lua	2014-07-09 20:11:28.000000000 +0800
+@@ -22,6 +22,6 @@ function index()
+ 
+ 	local page
+ 
+-	page = entry({"admin", "services", "p910nd"}, cbi("p910nd"), _("p910nd - Printer server"), 60)
++	page = entry({"admin", "services", "p910nd"}, cbi("p910nd"), _("Printer Server"), 60)
+ 	page.dependent = true
+ end

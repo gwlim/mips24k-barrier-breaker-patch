@@ -1,0 +1,34 @@
+--- ./package/kernel/mac80211/Makefile	2014-08-25 22:38:46.000000000 +0800
++++ ./package/kernel/mac80211/Makefile	2014-08-25 22:42:08.877473786 +0800
+@@ -93,7 +93,7 @@ define KernelPackage/mac80211/config
+ 		bool "Export mac80211 internals in DebugFS"
+ 		select KERNEL_DEBUG_FS
+ 		select KERNEL_RELAY if PACKAGE_kmod-ath9k-common
+-		default y
++		default n
+ 		help
+ 		  Select this to see extensive information about
+ 		  the internal state of mac80211 in debugfs.
+@@ -504,6 +504,7 @@ define KernelPackage/ath/config
+   if PACKAGE_kmod-ath
+ 	config ATH_USER_REGD
+ 		bool "Force Atheros drivers to respect the user's regdomain settings"
++		default y
+ 		help
+ 		  Atheros' idea of regulatory handling is that the EEPROM of the card defines
+ 		  the regulatory limits and the user is only allowed to restrict the settings
+@@ -515,12 +516,14 @@ define KernelPackage/ath/config
+ 
+ 	config PACKAGE_ATH_DEBUG
+ 		bool "Atheros wireless debugging"
++		default n
+ 		help
+ 		  Say Y, if you want to debug atheros wireless drivers.
+ 		  Right now only ath9k makes use of this.
+ 
+ 	config PACKAGE_ATH_DFS
+ 		bool "Enable DFS support"
++		default y
+ 		help
+ 		  Dynamic frequency selection (DFS) is required for most of the 5 GHz band
+ 		  channels in Europe, US, and Japan.

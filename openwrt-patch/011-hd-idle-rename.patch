@@ -1,0 +1,30 @@
+--- ./feeds/luci/applications/luci-hd-idle/luasrc/controller/hd_idle.lua	2014-08-24 12:43:12.598331213 +0800
++++ ./feeds/luci/applications/luci-hd-idle/luasrc/controller/hd_idle.lua	2014-07-09 20:11:28.000000000 +0800
+@@ -22,6 +22,6 @@ function index()
+ 
+ 	local page
+ 
+-	page = entry({"admin", "services", "hd_idle"}, cbi("hd_idle"), _("hd-idle"), 60)
++	page = entry({"admin", "services", "hd_idle"}, cbi("hd_idle"), _("HD-Idle"), 60)
+ 	page.dependent = true
+ end
+--- ../feeds/luci/applications/luci-hd-idle/luasrc/model/cbi/hd_idle.lua.orig	2014-08-24 12:43:12.598331213 +0800
++++ ../feeds/luci/applications/luci-hd-idle/luasrc/model/cbi/hd_idle.lua	2014-07-09 20:11:28.000000000 +0800
+@@ -15,8 +15,8 @@ $Id$
+ 
+ require("nixio.fs")
+ 
+-m = Map("hd-idle", "hd-idle",
+-	translate("hd-idle is a utility program for spinning-down external " ..
++m = Map("hd-idle", "HD-Idle",
++	translate("HD-Idle is a utility program for spinning-down external " ..
+ 		"disks after a period of idle time."))
+ 
+ s = m:section(TypedSection, "hd-idle", translate("Settings"))
+@@ -38,4 +38,6 @@ unit:value("minutes", translate("min"))
+ unit:value("hours", translate("h"))
+ unit.rmempty = true
+ 
++s:option(Flag, "enable_debug", translate("Enable debug"))
++
+ return m

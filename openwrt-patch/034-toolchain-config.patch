@@ -1,0 +1,20 @@
+--- ./toolchain/Config.in	2014-08-31 13:47:58.000000000 +0800
++++ ./toolchain/Config.in	2014-08-31 13:58:54.337079583 +0800
+@@ -29,7 +29,7 @@ menuconfig TARGET_OPTIONS
+ 		bool "Build packages with MIPS16 instructions" if TARGET_OPTIONS
+ 		depends on HAS_MIPS16
+ 		depends on !GCC_VERSION_4_6
+-		default y
++		default n
+ 		help
+ 		  If your target CPU does support the MIPS16 instruction set
+ 		  and you want to use it for packages, enable this option.
+@@ -235,7 +235,7 @@ config GDB
+ 	bool
+ 	depends on !avr32
+ 	prompt "Build gdb" if TOOLCHAINOPTS
+-	default y if !EXTERNAL_TOOLCHAIN
++	default n if !EXTERNAL_TOOLCHAIN
+ 	help
+ 		Enable if you want to build the gdb
+ 

@@ -1,0 +1,10 @@
+--- ./feeds/oldpackages/net/l7-protocols/Makefile	2014-08-24 12:45:46.000000000 +0800
++++ ./feeds/oldpackages/net/l7-protocols/Makefile	2014-08-25 21:12:17.133347370 +0800
+@@ -50,6 +50,7 @@ else
+ endif
+ 
+ define Package/l7-protocols/install
++	find $(PKG_BUILD_DIR) -name "README" -delete
+ 	$(INSTALL_DIR) $(1)/etc/l7-protocols
+ 	$(CP) $(PKG_BUILD_DIR)/example_traffic \
+ 		$(PKG_BUILD_DIR)/extra \

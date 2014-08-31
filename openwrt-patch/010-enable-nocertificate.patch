@@ -1,0 +1,11 @@
+--- ./feeds/packages/net/ddns-scripts/files/usr/lib/ddns/dynamic_dns_updater.sh	2014-08-24 13:34:03.000000000 +0800
++++ ./feeds/packages/net/ddns-scripts/files/usr/lib/ddns/dynamic_dns_updater.sh	2014-08-24 13:34:19.361883804 +0800
+@@ -102,7 +102,7 @@ fi
+ 
+ #some constants
+ 
+-retrieve_prog="/usr/bin/wget -O - ";
++retrieve_prog="/usr/bin/wget --no-check-certificate -O - ";
+ if [ "x$use_https" = "x1" ]
+ then
+ 	/usr/bin/wget --version 2>&1 |grep -q "\+ssl"

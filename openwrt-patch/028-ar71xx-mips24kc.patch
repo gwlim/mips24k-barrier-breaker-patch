@@ -1,0 +1,21 @@
+--- ./target/linux/ar71xx/Makefile	2014-08-24 12:42:13.000000000 +0800
++++ ./target/linux/ar71xx/Makefile	2014-08-25 23:09:24.124604854 +0800
+@@ -9,8 +9,8 @@ include $(TOPDIR)/rules.mk
+ ARCH:=mips
+ BOARD:=ar71xx
+ BOARDNAME:=Atheros AR7xxx/AR9xxx
+-FEATURES:=mips16
+-CPU_TYPE=34kc
++FEATURES:=
++CPU_TYPE=24kc
+ SUBTARGETS:=generic nand mikrotik
+ 
+ LINUX_VERSION:=3.10.49
+@@ -19,6 +19,6 @@ include $(INCLUDE_DIR)/target.mk
+ 
+ DEFAULT_PACKAGES += \
+ 	kmod-gpio-button-hotplug swconfig \
+-	kmod-ath9k wpad-mini uboot-envtools
++	kmod-ath9k wpad
+ 
+ $(eval $(call BuildTarget))
