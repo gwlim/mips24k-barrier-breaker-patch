@@ -5,7 +5,7 @@
  	local categories = disp.node_childs(tree)
  %>
 -   <footer><a href="http://luci.subsignal.org/">Powered by <%= luci.__appname__ .. " (" .. luci.__version__ .. ")" %></a>
-+   <footer><a href="http://luci.subsignal.org/">Powered by <%= luci.__appname__ .. %></a>
++   <footer><a href="http://luci.subsignal.org/">Powered by <%= luci.__appname__ .. " " %></a>
  
      <%=luci.version.distversion%>
  
