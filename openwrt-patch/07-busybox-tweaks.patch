@@ -69,6 +69,15 @@
  config BUSYBOX_DEFAULT_FEATURE_TRACEROUTE_VERBOSE
  	bool
  	default y
+@@ -2196,7 +2196,7 @@ config BUSYBOX_DEFAULT_FEATURE_TRACEROUT
+ 	default n
+ config BUSYBOX_DEFAULT_FEATURE_TRACEROUTE_USE_ICMP
+ 	bool
+-	default n
++	default y
+ config BUSYBOX_DEFAULT_TUNCTL
+ 	bool
+ 	default n
 @@ -2259,7 +2259,7 @@ config BUSYBOX_DEFAULT_VCONFIG
  	default y
  config BUSYBOX_DEFAULT_WGET

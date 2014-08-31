@@ -1,0 +1,22 @@
+--- ./feeds/luci/themes/bootstrap/luasrc/view/themes/bootstrap/footer.htm	2014-08-31 14:53:22.000000000 +0800
++++ ./feeds/luci/themes/bootstrap/luasrc/view/themes/bootstrap/footer.htm	2014-08-31 15:44:53.485578239 +0800
+@@ -22,7 +22,7 @@ You may obtain a copy of the License at
+ 
+ 	local categories = disp.node_childs(tree)
+ %>
+-   <footer><a href="http://luci.subsignal.org/">Powered by <%= luci.__appname__ .. " (" .. luci.__version__ .. ")" %></a>
++   <footer><a href="http://luci.subsignal.org/">Powered by <%= luci.__appname__ .. %></a>
+ 
+     <%=luci.version.distversion%>
+ 
+--- ./feeds/luci/modules/admin-full/luasrc/view/admin_status/index.htm.	2014-08-31 14:53:22.000000000 +0800
++++ ./feeds/luci/modules/admin-full/luasrc/view/admin_status/index.htm	2014-08-31 16:01:19.547444715 +0800
+@@ -564,7 +564,7 @@ You may obtain a copy of the License at
+ 		<tr><td width="33%"><%:Model%></td><td><%=pcdata(model or "?")%></td></tr>
+ 		<tr><td width="33%"><%:Firmware Version%></td><td>
+ 			<%=pcdata(luci.version.distname)%> <%=pcdata(luci.version.distversion)%> /
+-			<%=pcdata(luci.version.luciname)%> (<%=pcdata(luci.version.luciversion)%>)
++			<%=pcdata(luci.version.luciname)%>
+ 		</td></tr>
+ 		<tr><td width="33%"><%:Kernel Version%></td><td><%=luci.sys.exec("uname -r")%></td></tr>
+ 		<tr><td width="33%"><%:Local Time%></td><td id="localtime">-</td></tr>
