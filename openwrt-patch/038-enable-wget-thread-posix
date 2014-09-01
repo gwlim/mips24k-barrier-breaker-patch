@@ -1,0 +1,12 @@
+--- ./feeds/packages/net/wget/Makefile	2014-08-31 17:01:21.000000000 +0800
++++ ./feeds/packages/net/wget/Makefile	2014-09-01 19:25:30.795986906 +0800
+@@ -64,7 +64,8 @@ endef
+ 
+ CONFIGURE_ARGS+= \
+ 	--disable-rpath \
+-	--disable-iri
++	--disable-iri \
++	--enable-threads=posix
+ 
+ CONFIGURE_VARS += \
+ 	ac_cv_header_uuid_uuid_h=no
