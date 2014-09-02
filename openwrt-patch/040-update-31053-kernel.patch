@@ -1,0 +1,33 @@
+--- ./target/linux/ar71xx/Makefile	2014-09-02 20:12:58.000000000 +0800
++++ ./target/linux/ar71xx/Makefile	2014-09-02 23:10:32.781061997 +0800
+@@ -13,7 +13,7 @@ FEATURES:=
+ CPU_TYPE=24kc
+ SUBTARGETS:=generic nand mikrotik
+ 
+-LINUX_VERSION:=3.10.49
++LINUX_VERSION:=3.10.53
+ 
+ include $(INCLUDE_DIR)/target.mk
+ 
+--- ./target/linux/lantiq/Makefile	2014-09-02 20:12:58.000000000 +0800
++++ ./target/linux/lantiq/Makefile	2014-09-02 23:11:19.739603219 +0800
+@@ -11,7 +11,7 @@ BOARDNAME:=Lantiq
+ FEATURES:=squashfs
+ SUBTARGETS=xway xrx200
+ 
+-LINUX_VERSION:=3.10.49
++LINUX_VERSION:=3.10.53
+ 
+ CPU_TYPE:=34kc
+ 
+--- ./target/linux/ramips/Makefile	2014-09-02 20:12:58.000000000 +0800
++++ ./target/linux/ramips/Makefile	2014-09-02 23:11:45.489900010 +0800
+@@ -12,7 +12,7 @@ BOARDNAME:=Ralink RT288x/RT3xxx
+ SUBTARGETS:=rt305x mt7620a mt7620n rt3883 rt288x
+ FEATURES:=squashfs gpio
+ CPU_TYPE=24kec
+-LINUX_VERSION:=3.10.49
++LINUX_VERSION:=3.10.53
+ 
+ include $(INCLUDE_DIR)/target.mk
+ DEFAULT_PACKAGES += \
