@@ -8,7 +8,7 @@
 +	page = entry({"admin", "services", "hd_idle"}, cbi("hd_idle"), _("HD-Idle"), 60)
  	page.dependent = true
  end
---- ../feeds/luci/applications/luci-hd-idle/luasrc/model/cbi/hd_idle.lua.orig	2014-08-24 12:43:12.598331213 +0800
+--- ../feeds/luci/applications/luci-hd-idle/luasrc/model/cbi/hd_idle.lua	2014-08-24 12:43:12.598331213 +0800
 +++ ../feeds/luci/applications/luci-hd-idle/luasrc/model/cbi/hd_idle.lua	2014-07-09 20:11:28.000000000 +0800
 @@ -15,8 +15,8 @@ $Id$
  
