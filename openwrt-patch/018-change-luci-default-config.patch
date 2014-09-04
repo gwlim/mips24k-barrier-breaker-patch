@@ -14,7 +14,7 @@
  	$(PKG_BUILD_DIR)/build/mkversion.sh $(1)/usr/lib/lua/luci/version.lua \
  		"OpenWrt Firmware" \
 -		"$(OPENWRTVERSION)" \
--		"trunk" \
+-		"luci-0.12" \
 -		"$(PKG_VERSION)"
 +		"$(OPENWRTVERSION)"
  endef
