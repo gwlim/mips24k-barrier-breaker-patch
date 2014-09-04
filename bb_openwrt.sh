@@ -29,12 +29,12 @@ do
   mv -b "$file-min.css" "$file"
 done
 
-for file in $( find $directory -name '*.htm' )
-do
-  echo Minifying $file
-  java -jar htmlcompressor-1.5.3.jar -o "$file-min.htm" "$file"
-  mv -b "$file-min.htm" "$file"
-done
+#for file in $( find $directory -name '*.htm' )
+#do
+#  echo Minifying $file
+#  java -jar htmlcompressor-1.5.3.jar -o "$file-min.htm" "$file"
+#  mv -b "$file-min.htm" "$file"
+#done
 
 make defconfig
 rm .config
