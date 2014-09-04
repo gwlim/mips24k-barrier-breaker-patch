@@ -11,7 +11,7 @@
 +	rm $(TARGET_DIR)/etc/rc.d/S50tinyproxy
 +	rm $(TARGET_DIR)/etc/rc.d/S50vsftpd
 +	rm $(TARGET_DIR)/etc/rc.d/S60etherwake
-+	rm $(TARGET_DIR)/etc/rc.d/S60samba
++	
 +	rm $(TARGET_DIR)/etc/rc.d/S60xl2tpd
 +	rm $(TARGET_DIR)/etc/rc.d/S82freifunk-p2pblock
 +	rm $(TARGET_DIR)/etc/rc.d/S95ddns

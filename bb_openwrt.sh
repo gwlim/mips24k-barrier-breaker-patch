@@ -1,13 +1,18 @@
 #!/bin/bash
 ./scripts/feeds update -a
 ./scripts/feeds install -a
+echo Remove Support for PPPOA
 rm ./feeds/luci/protocols/ppp/luasrc/model/cbi/admin_network/proto_pppoa.lua
+echo Remove Support for DIR-825 and AllNet Devices
+rm ./target/linux/ar71xx/base-files/lib/upgrade/dir825.sh
+rm ./target/linux/ar71xx/base-files/lib/upgrade/allnet.sh
         for i in $( ls openwrt-patch ); do
             echo Applying patch $i
             patch -p1 < openwrt-patch/$i
         done
 wget https://closure-compiler.googlecode.com/files/compiler-20131014.zip
 wget https://github.com/yui/yuicompressor/releases/download/v2.4.8/yuicompressor-2.4.8.jar
+wget http://htmlcompressor.googlecode.com/files/htmlcompressor-1.5.3.jar
 unzip -qn compiler-20131014.zip
 directory=./feeds
 for file in $( find $directory -name '*.js' )
@@ -23,6 +28,14 @@ do
   java -jar yuicompressor-2.4.8.jar -o "$file-min.css" "$file"
   mv -b "$file-min.css" "$file"
 done
+
+for file in $( find $directory -name '*.htm' )
+do
+  echo Minifying $file
+  java -jar htmlcompressor-1.5.3.jar -o "$file-min.htm" "$file"
+  mv -b "$file-min.htm" "$file"
+done
+
 make defconfig
 rm .config
 make defconfig

@@ -1,0 +1,60 @@
+--- ./feeds/luci/themes/bootstrap/htdocs/luci-static/bootstrap/cascade.css	2014-09-02 20:10:14.000000000 +0800
++++ ./feeds/luci/themes/bootstrap/htdocs/luci-static/bootstrap/cascade.css	2014-09-02 23:39:13.728389601 +0800
+@@ -1,18 +1,3 @@
+-/*!
+- * LuCI Bootstrap Theme
+- * Copyright 2012 Nut & Bolt
+- * By David Menting <david@nut-bolt.nl>
+- * Based on Bootstrap v1.4.0
+- *
+- * Copyright 2011 Twitter, Inc
+- * Licensed under the Apache License v2.0
+- * http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Designed and built with all the love in the world @twitter by @mdo and @fat.
+- */
+-/* Reset.less
+- * Props to Eric Meyer (meyerweb.com) for his CSS reset file. We're using an adapted version here	that cuts out some of the reset HTML elements we will never need here (i.e., dfn, samp, etc).
+- * ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+ html {
+ 	margin: 0;
+ 	padding: 0;
+@@ -153,10 +138,6 @@ textarea {
+ 	vertical-align: top;
+ }
+ 
+-/*
+- * Scaffolding
+- * Basic and global styles for generating a grid system, structural layout, and page templates
+- * ------------------------------------------------------------------------------------------- */
+ body {
+ 	background-color: #ffffff;
+ 	margin: 0;
+@@ -206,9 +187,6 @@ a:hover {
+ 	float: left;
+ }
+ 
+-/* Typography.less
+- * Headings, body text, lists, code, and more for a versatile and durable typography system
+- * ---------------------------------------------------------------------------------------- */
+ p,
+ .cbi-map-descr,
+ .cbi-section-descr {
+@@ -396,9 +374,6 @@ pre {
+ 	word-wrap: break-word;
+ }
+ 
+-/* Forms.less
+- * Base styles for various input types, form layouts, and states
+- * ------------------------------------------------------------- */
+ form {
+ 	margin-bottom: 18px;
+ }
+@@ -819,6 +794,7 @@ header div > ul a, .nav a {
+ 	padding: 10px 10px 11px;
+ 	line-height: 19px;
+ 	text-decoration: none;
++	cursor: pointer;
+ }
+ 
+ header div > ul a:hover, .nav a:hover {

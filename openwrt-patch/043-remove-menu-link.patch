@@ -1,0 +1,11 @@
+--- ./feeds/luci/themes/bootstrap/luasrc/view/themes/bootstrap/header.htm	2014-09-02 20:10:14.311405068 +0800
++++ ./feeds/luci/themes/bootstrap/luasrc/view/themes/bootstrap/header.htm	2014-07-09 20:09:57.000000000 +0800
+@@ -154,7 +154,7 @@ You may obtain a copy of the License at
+                 if #grandchildren > 0 then
+ 	%>
+         <li class="dropdown">
+-            <a class="menu" href="<%=pcdata(href)%>"><%=pcdata(striptags(translate(nnode.title)))%></a>
++            <a class="menu"><%=pcdata(striptags(translate(nnode.title)))%></a>
+             <%- submenu("/" .. category .. "/" .. r .. "/", nnode) %>
+         </li>
+ 	<%          else %>
