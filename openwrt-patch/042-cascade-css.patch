@@ -30,6 +30,15 @@
  body {
  	background-color: #ffffff;
  	margin: 0;
+@@ -165,7 +146,7 @@ body {
+ 	font-weight: normal;
+ 	line-height: 18px;
+ 	color: #404040;
+-	padding-top: 58px;
++	padding-top: 120px;
+ }
+ 
+ .container {
 @@ -206,9 +187,6 @@ a:hover {
  	float: left;
  }
