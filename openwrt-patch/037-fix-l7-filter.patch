@@ -1,0 +1,13 @@
+--- /dev/null	2014-09-06 16:28:22.040264192 +0800
++++ ./target/linux/generic/patches-3.10/998-netfilter-l7.patch	2014-09-06 17:40:40.445687478 +0800
+@@ -0,0 +1,10 @@
++--- a/net/netfilter/Kconfig
+++++ b/net/netfilter/Kconfig
++@@ -1018,7 +1018,6 @@ config NETFILTER_XT_MATCH_IPVS
++ 
++ config NETFILTER_XT_MATCH_LAYER7
++ 	tristate '"layer7" match support'
++-	depends on EXPERIMENTAL
++ 	depends on NETFILTER_XTABLES
++ 	depends on NETFILTER_ADVANCED
++ 	depends on NF_CONNTRACK
