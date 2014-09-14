@@ -1,0 +1,11 @@
+--- ./toolchain/uClibc/config-0.9.33.2/common	2014-09-10 20:51:22.000000000 +0800
++++ ./toolchain/uClibc/config-0.9.33.2/common	2014-09-10 22:49:42.319709737 +0800
+@@ -49,7 +49,7 @@ MALLOC_GLIBC_COMPAT=y
+ # MALLOC_SIMPLE is not set
+ MALLOC_STANDARD=y
+ MULTILIB_DIR="lib"
+-PTHREADS_DEBUG_SUPPORT=y
++# PTHREADS_DEBUG_SUPPORT is not set
+ RUNTIME_PREFIX="/"
+ # SUPPORT_LD_DEBUG is not set
+ # SUPPORT_LD_DEBUG_EARLY is not set

@@ -1,0 +1,19 @@
+--- ./toolchain/uClibc/config-0.9.33.2/mips	2014-09-10 20:51:22.000000000 +0800
++++ ./toolchain/uClibc/config-0.9.33.2/mips	2014-09-10 22:33:31.958550752 +0800
+@@ -1,13 +1,13 @@
+ ARCH_ANY_ENDIAN=y
+ ARCH_BIG_ENDIAN=y
+-ARCH_CFLAGS="-mno-split-addresses"
++ARCH_CFLAGS=""
+ ARCH_WANTS_BIG_ENDIAN=y
+ # CONFIG_MIPS_ISA_1 is not set
+ # CONFIG_MIPS_ISA_2 is not set
+ # CONFIG_MIPS_ISA_3 is not set
+ # CONFIG_MIPS_ISA_4 is not set
+-CONFIG_MIPS_ISA_MIPS32=y
+-# CONFIG_MIPS_ISA_MIPS32R2 is not set
++# CONFIG_MIPS_ISA_MIPS32 is not set
++CONFIG_MIPS_ISA_MIPS32R2=y
+ # CONFIG_MIPS_ISA_MIPS64 is not set
+ # CONFIG_MIPS_N32_ABI is not set
+ # CONFIG_MIPS_N64_ABI is not set
