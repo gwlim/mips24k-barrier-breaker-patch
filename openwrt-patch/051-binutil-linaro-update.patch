@@ -1,0 +1,17 @@
+--- ./toolchain/binutils/Makefile	2014-09-06 20:31:20.000000000 +0800
++++ ./toolchain/binutils/Makefile	2014-09-14 23:52:37.547665333 +0800
+@@ -11,10 +11,10 @@ PKG_VERSION:=$(call qstrip,$(CONFIG_BINU
+ BIN_VERSION:=$(PKG_VERSION)
+ 
+ ifeq ($(findstring linaro, $(CONFIG_BINUTILS_VERSION)),linaro)
+-  PKG_SOURCE_URL:=https://releases.linaro.org/13.12/components/toolchain/binutils-linaro/
+-  PKG_REV:=2.24-2013.12
+-  PKG_SOURCE:=$(PKG_NAME)-linaro-$(PKG_REV).tar.xz
+-  PKG_MD5SUM:=4f0fe947895a260b8386de63b09feb18
++  PKG_SOURCE_URL:=https://releases.linaro.org/14.08/components/toolchain/binutils-linaro/
++  PKG_REV:=2.24.0-2014.08
++  PKG_SOURCE:=$(PKG_NAME)-linaro-$(PKG_REV).tar.bz2
++  PKG_MD5SUM:=56419b23e337bbfc3dce6d977ccb07c7
+   BINUTILS_DIR:=$(PKG_NAME)-linaro-$(PKG_REV)
+   HOST_BUILD_DIR:=$(BUILD_DIR_TOOLCHAIN)/$(BINUTILS_DIR)
+ else
