@@ -5,7 +5,7 @@
  $(eval $(call application,tinyproxy,Tinyproxy - HTTP(S)-Proxy configuration,tinyproxy))
  $(eval $(call application,polipo,LuCI Support for the Polipo Proxy,polipo))
 -$(eval $(call application,openvpn,LuCI Support for OpenVPN,openvpn @BROKEN))
-+$(eval $(call application,openvpn,LuCI Support for OpenVPN,openvpn))
++$(eval $(call application,openvpn,LuCI Support for OpenVPN,openvpn-openssl))
  $(eval $(call application,p2pblock,LuCI Support for the Freifunk P2P-Block addon,luci-app-firewall freifunk-p2pblock))
  $(eval $(call application,multiwan,LuCI Support for the OpenWrt MultiWAN agent,luci-app-firewall multiwan))
  $(eval $(call application,wol,LuCI Support for Wake-on-LAN,etherwake))
