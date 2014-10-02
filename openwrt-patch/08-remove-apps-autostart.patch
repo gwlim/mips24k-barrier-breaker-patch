@@ -5,7 +5,7 @@
  	$(if $(CONFIG_CLEAN_IPKG),rm -rf $(TARGET_DIR)/usr/lib/opkg)
  	$(call mklibs)
 -
-+	rm $(TARGET_DIR)/etc/rc.d/S50hd-idle
++	
 +	rm $(TARGET_DIR)/etc/rc.d/S50p910nd
 +	rm $(TARGET_DIR)/etc/rc.d/S50qos
 +	rm $(TARGET_DIR)/etc/rc.d/S50tinyproxy
