@@ -9,8 +9,7 @@
    TITLE:=LuCI core libraries
  endef
  
-@@ -47,15 +47,13 @@ define Package/luci-base/install
- 	$(call Package/luci/install/template,$(1),modules/base)
+@@ -48,14 +48,13 @@ define Package/luci-base/install
  	$(PKG_BUILD_DIR)/build/mkversion.sh $(1)/usr/lib/lua/luci/version.lua \
  		"OpenWrt Firmware" \
  		"$(OPENWRTVERSION)" \
@@ -27,3 +26,4 @@
  
         config PACKAGE_luci-base_compile
                 bool "Precompiled"
+
