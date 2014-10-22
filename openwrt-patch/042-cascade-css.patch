@@ -35,7 +35,7 @@
  	line-height: 18px;
  	color: #404040;
 -	padding-top: 58px;
-+	padding-top: 120px;
++	padding-top: 85px;
  }
  
  .container {
@@ -59,7 +59,69 @@
  form {
  	margin-bottom: 18px;
  }
-@@ -819,6 +794,7 @@ header div > ul a, .nav a {
+@@ -415,11 +390,7 @@ fieldset legend {
+ 	color: #404040;
+ 	padding-top: 20px;
+ 	*padding: 0 0 5px 0px;
+-	/* IE6-7 */
+-
+ 	*line-height: 1.5;
+-	/* IE6-7 */
+-
+ }
+ 
+ form .clearfix,
+@@ -497,8 +468,6 @@ input[type=checkbox], input[type=radio]
+ 	padding: 0;
+ 	margin: 3px 0;
+ 	*margin-top: 0;
+-	/* IE6-7 */
+-
+ 	line-height: normal;
+ 	border: none;
+ }
+@@ -522,7 +491,6 @@ input[type=button], input[type=reset], i
+ select, input[type=file] {
+ 	*height: auto;
+ 	*margin-top: 4px;
+-	/* For IE7, add top margin to align select with labels */
+ }
+ 
+ select[multiple] {
+@@ -690,11 +658,7 @@ textarea[readonly] {
+ .help-inline {
+ 	padding-left: 5px;
+ 	*position: relative;
+-	/* IE6-7 */
+-
+ 	*top: -5px;
+-	/* IE6-7 */
+-
+ }
+ 
+ .help-block {
+@@ -702,10 +666,6 @@ textarea[readonly] {
+ 	max-width: 600px;
+ }
+ 
+-/*
+- * Tables.less
+- * Tables for, you guessed it, tabular data
+- * ---------------------------------------- */
+ table {
+ 	width: 100%;
+ 	margin-bottom: 18px;
+@@ -736,9 +696,6 @@ table tbody th {
+ 	vertical-align: top;
+ }
+ 
+-/* Patterns.less
+- * Repeatable UI elements outside the base styles provided from the scaffolding
+- * ---------------------------------------------------------------------------- */
+ header {
+ 	height: 40px;
+ 	position: fixed;
+@@ -819,6 +776,7 @@ header div > ul a, .nav a {
  	padding: 10px 10px 11px;
  	line-height: 19px;
  	text-decoration: none;
@@ -67,3 +129,39 @@
  }
  
  header div > ul a:hover, .nav a:hover {
+@@ -942,11 +900,7 @@ a.menu:after, .dropdown-toggle:after {
+ 	content: "&darr;";
+ 	text-indent: -99999px;
+ 	vertical-align: top;
+-	margin-top: 8px;
+-	margin-left: 4px;
+-	border-left: 4px solid transparent;
+ 	border-right: 4px solid transparent;
+-	border-top: 4px solid #ffffff;
+ 	filter: alpha(opacity=50);
+ 	-khtml-opacity: 0.5;
+ 	-moz-opacity: 0.5;
+@@ -1519,7 +1473,6 @@ footer {
+ 	font-size: 11px;
+ }
+ 
+-/* Button icons for specific pages */
+ .Startup .cbi-section-table input.cbi-input-apply,
+ .Startup .cbi-section-table input.cbi-button-apply {
+ 	  background-image: url("../resources/cbi/apply.gif");
+@@ -1695,7 +1648,6 @@ a.label:hover {
+ 	background-color: #62cffc;
+ }
+ 
+-/* LuCI specific items */
+ .hidden { display: none }
+ 
+ #memtotal > div,
+@@ -1913,7 +1865,6 @@ td.cbi-value-field var {
+ 
+ .uci-change-list var ins,
+ .uci-change-list var del {
+-	/*display: inline;*/
+ 	border: none;
+ 	white-space: pre;
+ 	font-style: normal;
