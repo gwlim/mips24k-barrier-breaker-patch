@@ -35,7 +35,7 @@
  	line-height: 18px;
  	color: #404040;
 -	padding-top: 58px;
-+	padding-top: 85px;
++	padding-top: 120px;
  }
  
  .container {
@@ -88,6 +88,15 @@
  }
  
  select[multiple] {
+@@ -658,7 +626,7 @@ textarea[readonly] {
+ .cbi-page-actions {
+ 	background: #f5f5f5;
+ 	margin-bottom: 18px;
+-	padding: 17px 20px 18px 150px;
++	padding: 17px 20px 18px;
+ 	border-top: 1px solid #ddd;
+ 	-webkit-border-radius: 0 0 3px 3px;
+ 	-moz-border-radius: 0 0 3px 3px;
 @@ -690,11 +658,7 @@ textarea[readonly] {
  .help-inline {
  	padding-left: 5px;

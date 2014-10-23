@@ -1,0 +1,15 @@
+--- ./toolchain/gcc/final/Makefile	2014-10-23 21:41:23.000000000 +0800
++++ ./toolchain/gcc/final/Makefile	2014-10-23 21:43:15.894493148 +0800
+@@ -6,7 +6,11 @@ GCC_CONFIGURE += \
+ 	--with-headers=$(TOOLCHAIN_DIR)/include \
+ 	--enable-languages=$(TARGET_LANGUAGES) \
+ 	--enable-shared \
+-	--enable-threads \
++	--enable-threads=posix \
++	--with-arch=mips32r2 \
++	--with-mtune=24kc \
++	--with-mips-plt \
++	--disable-nls \
+ 	--with-slibdir=$(TOOLCHAIN_DIR)/lib
+ 
+ ifneq ($(CONFIG_GCC_VERSION_4_5)$(CONFIG_GCC_VERSION_4_6),)
