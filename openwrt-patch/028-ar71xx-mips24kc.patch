@@ -10,7 +10,7 @@
 +CPU_TYPE=24kc
  SUBTARGETS:=generic nand mikrotik
  
- LINUX_VERSION:=3.10.49
+ KERNEL_PATCHVER:=3.10
 @@ -19,6 +19,6 @@ include $(INCLUDE_DIR)/target.mk
  
  DEFAULT_PACKAGES += \
