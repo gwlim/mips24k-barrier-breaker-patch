@@ -2,7 +2,7 @@
 +++ ./target/linux/lantiq/Makefile	2014-08-27 20:40:53.860025724 +0800
 @@ -13,7 +13,7 @@ SUBTARGETS=xway xrx200
  
- LINUX_VERSION:=3.10.49
+ KERNEL_PATCHVER:=3.10
  
 -CPU_TYPE:=mips32r2
 +CPU_TYPE:=34kc
