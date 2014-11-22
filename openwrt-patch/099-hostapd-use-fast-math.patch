@@ -1,14 +1,5 @@
 --- ./package/network/services/hostapd/files/hostapd-full.config	2014-11-18 14:11:12.000000000 +0800
 +++ ./package/network/services/hostapd/files/hostapd-full.config	2014-11-18 14:17:40.386142349 +0800
-@@ -16,7 +16,7 @@ CONFIG_DRIVER_HOSTAP=y
- CONFIG_DRIVER_WIRED=y
- 
- # Driver interface for madwifi driver
--CONFIG_DRIVER_MADWIFI=y
-+#CONFIG_DRIVER_MADWIFI=y
- #CFLAGS += -I../../madwifi # change to the madwifi source directory
- 
- # Driver interface for Prism54 driver
 @@ -158,6 +158,7 @@ CONFIG_IEEE80211AC=y
  
  CONFIG_TLS=internal
