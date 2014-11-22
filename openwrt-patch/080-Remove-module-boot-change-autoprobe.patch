@@ -1,0 +1,82 @@
+--- ./package/kernel/gpio-button-hotplug/Makefile	2014-11-22 16:22:34.000000000 +0800
++++ ./package/kernel/gpio-button-hotplug/Makefile	2014-11-22 16:22:46.597899240 +0800
+@@ -18,7 +18,7 @@ define KernelPackage/gpio-button-hotplug
+   DEPENDS:=@!LINUX_3_3
+   TITLE:=Simple GPIO Button Hotplug driver
+   FILES:=$(PKG_BUILD_DIR)/gpio-button-hotplug.ko
+-  AUTOLOAD:=$(call AutoLoad,30,gpio-button-hotplug,1)
++  AUTOLOAD:=$(call AutoProbe,gpio-button-hotplug)
+   KCONFIG:=
+ endef
+
+--- ./package/kernel/linux/modules/crypto.mk	2014-11-22 16:16:46.000000000 +0800
++++ ./package/kernel/linux/modules/crypto.mk	2014-11-22 16:30:47.097004788 +0800
+@@ -43,7 +43,7 @@ define KernelPackage/crypto-hash
+   TITLE:=CryptoAPI hash support
+   KCONFIG:=CONFIG_CRYPTO_HASH
+   FILES:=$(LINUX_DIR)/crypto/crypto_hash.ko
+-  AUTOLOAD:=$(call AutoLoad,02,crypto_hash,1)
++  AUTOLOAD:=$(call AutoProbe,crypto_hash)
+   $(call AddDepends/crypto)
+ endef
+ 
+@@ -255,7 +255,7 @@ define KernelPackage/crypto-arc4
+   TITLE:=ARC4 (RC4) cipher CryptoAPI module
+   KCONFIG:=CONFIG_CRYPTO_ARC4
+   FILES:=$(LINUX_DIR)/crypto/arc4.ko
+-  AUTOLOAD:=$(call AutoLoad,09,arc4)
++  AUTOLOAD:=$(call AutoProbe,arc4)
+   $(call AddDepends/crypto)
+ endef
+ 
+@@ -345,7 +345,7 @@ define KernelPackage/crypto-ecb
+   DEPENDS:=+kmod-crypto-manager
+   KCONFIG:=CONFIG_CRYPTO_ECB
+   FILES:=$(LINUX_DIR)/crypto/ecb.ko
+-  AUTOLOAD:=$(call AutoLoad,09,ecb)
++  AUTOLOAD:=$(call AutoProbe,ecb)
+   $(call AddDepends/crypto)
+ endef
+ 
+@@ -406,7 +406,7 @@ define KernelPackage/crypto-sha1
+   DEPENDS:=+kmod-crypto-hash
+   KCONFIG:=CONFIG_CRYPTO_SHA1
+   FILES:=$(LINUX_DIR)/crypto/sha1_generic.ko
+-  AUTOLOAD:=$(call AutoLoad,09,sha1_generic)
++  AUTOLOAD:=$(call AutoProbe,sha1_generic)
+   $(call AddDepends/crypto)
+ endef
+ 
+--- ./package/kernel/linux/modules/usb.mk	2014-11-22 16:24:15.000000000 +0800
++++ ./package/kernel/linux/modules/usb.mk	2014-11-22 17:12:09.072645554 +0800
+@@ -19,7 +19,7 @@ define KernelPackage/usb-core
+   FILES:= \
+ 	$(LINUX_DIR)/drivers/usb/core/usbcore.ko \
+ 	$(LINUX_DIR)/drivers/usb/usb-common.ko
+-  AUTOLOAD:=$(call AutoLoad,20,usb-common usbcore,1)
++  AUTOLOAD:=$(call AutoProbe,usb-common usbcore)
+   $(call AddDepends/nls)
+ endef
+ 
+@@ -331,7 +331,7 @@ define KernelPackage/usb-ohci
+ 	CONFIG_USB_OHCI_HCD_OMAP3=y \
+ 	CONFIG_USB_OHCI_HCD_PLATFORM=y
+   FILES:=$(LINUX_DIR)/drivers/usb/host/ohci-hcd.ko
+-  AUTOLOAD:=$(call AutoLoad,50,ohci-hcd,1)
++  AUTOLOAD:=$(call AutoProbe,ohci-hcd)
+   $(call AddDepends/usb)
+ endef
+ 
+@@ -397,10 +397,10 @@ ifeq ($(strip $(call CompareKernelPatchV
+   ifneq ($(wildcard $(LINUX_DIR)/drivers/usb/host/ehci-orion.ko),)
+     FILES+=$(LINUX_DIR)/drivers/usb/host/ehci-orion.ko
+   endif
+-  AUTOLOAD:=$(call AutoLoad,40,ehci-hcd ehci-platform ehci-orion,1)
++  AUTOLOAD:=$(call AutoProbe,ehci-hcd ehci-platform ehci-orion)
+ else
+   FILES:=$(LINUX_DIR)/drivers/usb/host/ehci-hcd.ko
+-  AUTOLOAD:=$(call AutoLoad,40,ehci-hcd,1)
++  AUTOLOAD:=$(call AutoProbe,ehci-hcd)
+ endif
+   $(call AddDepends/usb)
+ endef
