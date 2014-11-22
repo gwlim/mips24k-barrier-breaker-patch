@@ -80,3 +80,126 @@
  endif
    $(call AddDepends/usb)
  endef
+--- ./package/kernel/linux/modules/other.mk	2014-11-22 19:01:11.000000000 +0800
++++ ./package/kernel/linux/modules/other.mk	2014-11-22 19:01:23.731020732 +0800
+@@ -732,7 +732,7 @@ else
+ 	$(LINUX_DIR)/drivers/staging/zsmalloc/zsmalloc.ko \
+ 	$(LINUX_DIR)/drivers/staging/zram/zram.ko
+ endif
+-  AUTOLOAD:=$(call AutoLoad,20,zsmalloc zram)
++  AUTOLOAD:=$(call AutoProbe,zsmalloc zram)
+ endef
+ 
+ define KernelPackage/zram/description
+--- ./package/kernel/linux/modules/leds.mk	2014-11-22 17:42:59.000000000 +0800
++++ ./package/kernel/linux/modules/leds.mk	2014-11-22 19:10:35.236601162 +0800
+@@ -13,7 +13,7 @@ define KernelPackage/leds-gpio
+   DEPENDS:= @GPIO_SUPPORT
+   KCONFIG:=CONFIG_LEDS_GPIO
+   FILES:=$(LINUX_DIR)/drivers/leds/leds-gpio.ko
+-  AUTOLOAD:=$(call AutoLoad,60,leds-gpio,1)
++  AUTOLOAD:=$(call AutoProbe,leds-gpio,1)
+ endef
+ 
+ define KernelPackage/leds-gpio/description
+@@ -28,7 +28,7 @@ define KernelPackage/ledtrig-heartbeat
+   TITLE:=LED Heartbeat Trigger
+   KCONFIG:=CONFIG_LEDS_TRIGGER_HEARTBEAT
+   FILES:=$(LINUX_DIR)/drivers/leds/$(if $(call kernel_patchver_ge,3.10),trigger/)ledtrig-heartbeat.ko
+-  AUTOLOAD:=$(call AutoLoad,50,ledtrig-heartbeat)
++  AUTOLOAD:=$(call AutoProbe,ledtrig-heartbeat)
+ endef
+ 
+ define KernelPackage/ledtrig-gpio/description
+@@ -43,7 +43,7 @@ define KernelPackage/ledtrig-gpio
+   TITLE:=LED GPIO Trigger
+   KCONFIG:=CONFIG_LEDS_TRIGGER_GPIO
+   FILES:=$(LINUX_DIR)/drivers/leds/$(if $(call kernel_patchver_ge,3.10),trigger/)ledtrig-gpio.ko
+-  AUTOLOAD:=$(call AutoLoad,50,ledtrig-gpio)
++  AUTOLOAD:=$(call AutoProbe,ledtrig-gpio)
+ endef
+ 
+ define KernelPackage/ledtrig-gpio/description
+@@ -58,7 +58,7 @@ define KernelPackage/ledtrig-morse
+   TITLE:=LED Morse Trigger
+   KCONFIG:=CONFIG_LEDS_TRIGGER_MORSE
+   FILES:=$(LINUX_DIR)/drivers/leds/ledtrig-morse.ko
+-  AUTOLOAD:=$(call AutoLoad,50,ledtrig-morse)
++  AUTOLOAD:=$(call AutoProbe,ledtrig-morse)
+ endef
+ 
+ define KernelPackage/ledtrig-morse/description
+@@ -73,7 +73,7 @@ define KernelPackage/ledtrig-netdev
+   TITLE:=LED NETDEV Trigger
+   KCONFIG:=CONFIG_LEDS_TRIGGER_NETDEV
+   FILES:=$(LINUX_DIR)/drivers/leds/ledtrig-netdev.ko
+-  AUTOLOAD:=$(call AutoLoad,50,ledtrig-netdev)
++  AUTOLOAD:=$(call AutoProbe,ledtrig-netdev)
+ endef
+ 
+ define KernelPackage/ledtrig-netdev/description
+@@ -89,7 +89,7 @@ define KernelPackage/ledtrig-netfilter
+   DEPENDS:=kmod-ipt-core
+   KCONFIG:=CONFIG_NETFILTER_XT_TARGET_LED
+   FILES:=$(LINUX_DIR)/net/netfilter/xt_LED.ko
+-  AUTOLOAD:=$(call AutoLoad,50,xt_LED)
++  AUTOLOAD:=$(call AutoProbe,xt_LED)
+ endef
+ 
+ define KernelPackage/ledtrig-netfilter/description
+@@ -110,7 +110,7 @@ define KernelPackage/ledtrig-usbdev
+   DEPENDS:=@USB_SUPPORT kmod-usb-core
+   KCONFIG:=CONFIG_LEDS_TRIGGER_USBDEV
+   FILES:=$(LINUX_DIR)/drivers/leds/ledtrig-usbdev.ko
+-  AUTOLOAD:=$(call AutoLoad,50,ledtrig-usbdev)
++  AUTOLOAD:=$(call AutoProbe,ledtrig-usbdev)
+ endef
+ 
+ define KernelPackage/ledtrig-usbdev/description
+@@ -125,7 +125,7 @@ define KernelPackage/ledtrig-default-on
+   TITLE:=LED Default ON Trigger
+   KCONFIG:=CONFIG_LEDS_TRIGGER_DEFAULT_ON
+   FILES:=$(LINUX_DIR)/drivers/leds/$(if $(call kernel_patchver_ge,3.10),trigger/)ledtrig-default-on.ko
+-  AUTOLOAD:=$(call AutoLoad,50,ledtrig-default-on,1)
++  AUTOLOAD:=$(call AutoProbe,ledtrig-default-on,1)
+ endef
+ 
+ define KernelPackage/ledtrig-default-on/description
+@@ -140,7 +140,7 @@ define KernelPackage/ledtrig-timer
+   TITLE:=LED Timer Trigger
+   KCONFIG:=CONFIG_LEDS_TRIGGER_TIMER
+   FILES:=$(LINUX_DIR)/drivers/leds/$(if $(call kernel_patchver_ge,3.10),trigger/)ledtrig-timer.ko
+-  AUTOLOAD:=$(call AutoLoad,50,ledtrig-timer,1)
++  AUTOLOAD:=$(call AutoProbe,ledtrig-timer,1)
+ endef
+ 
+ define KernelPackage/ledtrig-timer/description
+@@ -157,7 +157,7 @@ define KernelPackage/ledtrig-oneshot
+   DEPENDS:=@!LINUX_3_3
+   KCONFIG:=CONFIG_LEDS_TRIGGER_ONESHOT
+   FILES:=$(LINUX_DIR)/drivers/leds/$(if $(call kernel_patchver_ge,3.10),trigger/)ledtrig-oneshot.ko
+-  AUTOLOAD:=$(call AutoLoad,50,ledtrig-oneshot)
++  AUTOLOAD:=$(call AutoProbe,ledtrig-oneshot)
+ endef
+ 
+ define KernelPackage/ledtrig-oneshot/description
+@@ -174,7 +174,7 @@ define KernelPackage/leds-tlc59116
+   DEPENDS:=@TARGET_mvebu kmod-i2c-core
+   KCONFIG:=CONFIG_LEDS_TLC59116
+   FILES:=$(LINUX_DIR)/drivers/leds/leds-tlc59116.ko
+-  AUTOLOAD:=$(call AutoLoad,60,leds-tlc59116,1)
++  AUTOLOAD:=$(call AutoProbe,leds-tlc59116,1)
+ endef
+ 
+ define KernelPackage/leds-tlc59116/description
+--- ./package/kernel/linux/modules/netfilter.mk	2014-11-22 17:42:59.000000000 +0800
++++ ./package/kernel/linux/modules/netfilter.mk	2014-11-22 19:29:25.586061976 +0800
+@@ -445,7 +445,7 @@ define KernelPackage/ip6tables
+   DEPENDS:=+kmod-ipv6 +kmod-ipt-core +kmod-ipt-conntrack
+   KCONFIG:=$(KCONFIG_IPT_IPV6)
+   FILES:=$(foreach mod,$(IPT_IPV6-m),$(LINUX_DIR)/net/$(mod).ko)
+-  AUTOLOAD:=$(call AutoLoad,42,$(notdir $(IPT_IPV6-m)))
++  AUTOLOAD:=$(call AutoLoad,20,$(notdir $(IPT_IPV6-m)))
+ endef
+ 
+ define KernelPackage/ip6tables/description
