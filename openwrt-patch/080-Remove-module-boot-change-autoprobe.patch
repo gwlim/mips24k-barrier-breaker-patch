@@ -234,18 +234,8 @@
  endef
  
  define KernelPackage/ip6tables-extra/description
---- ./package/kernel/linux/modules/netsupport.mk	2014-11-22 23:40:52.000000000 +0800
-+++ ./package/kernel/linux/modules/netsupport.mk	2014-11-23 01:21:38.614763383 +0800
-@@ -225,7 +225,7 @@ define KernelPackage/ipip
-   DEPENDS:=+kmod-iptunnel +kmod-iptunnel4
-   KCONFIG:=CONFIG_NET_IPIP
-   FILES:=$(LINUX_DIR)/net/ipv4/ipip.ko
--  AUTOLOAD:=$(call AutoLoad,32,ipip)
-+  AUTOLOAD:=$(call AutoProbe,ipip)
- endef
- 
- define KernelPackage/ipip/description
-
+--- ./package/kernel/linux/modules/netsupport.mk	2014-11-23 01:43:17.000000000 +0800
++++ ./package/kernel/linux/modules/netsupport.mk	2014-11-23 02:20:50.874730403 +0800
 @@ -352,7 +352,7 @@ define KernelPackage/iptunnel
    KCONFIG:= \
  	CONFIG_NET_IP_TUNNEL
@@ -309,15 +299,6 @@
  endef
  
  define KernelPackage/gre/description
-@@ -472,7 +472,7 @@ define KernelPackage/gre6
-   DEPENDS:=+kmod-ipv6 +kmod-iptunnel +kmod-ip6-tunnel @!LINUX_3_3 @!LINUX_3_6
-   KCONFIG:=CONFIG_IPV6_GRE
-   FILES:=$(LINUX_DIR)/net/ipv6/ip6_gre.ko
--  AUTOLOAD:=$(call AutoLoad,39,ip6_gre)
-+  AUTOLOAD:=$(call AutoProbe,ip6_gre)
- endef
- 
- define KernelPackage/gre6/description
 @@ -487,7 +487,7 @@ define KernelPackage/tun
    TITLE:=Universal TUN/TAP driver
    KCONFIG:=CONFIG_TUN
@@ -327,7 +308,6 @@
  endef
  
  define KernelPackage/tun/description
-
 @@ -698,7 +698,7 @@ define KernelPackage/sched-core
  	CONFIG_NET_EMATCH=y \
  	CONFIG_NET_EMATCH_U32
