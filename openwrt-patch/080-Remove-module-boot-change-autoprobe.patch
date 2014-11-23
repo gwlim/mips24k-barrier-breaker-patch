@@ -94,7 +94,7 @@
    FILES:= \
  	$(LINUX_DIR)/drivers/usb/host/xhci-hcd.ko
 -  AUTOLOAD:=$(call AutoLoad,54,xhci-hcd,1)
-+  AUTOLOAD:=$(call AutoProbe,54,xhci-hcd)
++  AUTOLOAD:=$(call AutoProbe,xhci-hcd)
    $(call AddDepends/usb)
  endef
 
