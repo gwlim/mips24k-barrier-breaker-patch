@@ -80,7 +80,6 @@
  endif
    $(call AddDepends/usb)
  endef
-
 @@ -445,7 +445,7 @@ else
  	$(LINUX_DIR)/drivers/staging/dwc2/dwc2.ko \
  	$(LINUX_DIR)/drivers/staging/dwc2/dwc2_platform.ko
@@ -95,10 +94,10 @@
    FILES:= \
  	$(LINUX_DIR)/drivers/usb/host/xhci-hcd.ko
 -  AUTOLOAD:=$(call AutoLoad,54,xhci-hcd,1)
-+  AUTOLOAD:=$(call AutoProbe,xhci-hcd)
++  AUTOLOAD:=$(call AutoProbe,54,xhci-hcd)
    $(call AddDepends/usb)
  endef
- 
+
 --- ./package/kernel/linux/modules/other.mk	2014-11-22 19:01:11.000000000 +0800
 +++ ./package/kernel/linux/modules/other.mk	2014-11-22 19:01:23.731020732 +0800
 @@ -91,7 +91,7 @@ define KernelPackage/eeprom-93cx6
