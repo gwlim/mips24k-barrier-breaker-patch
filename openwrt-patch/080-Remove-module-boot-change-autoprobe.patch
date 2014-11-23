@@ -98,7 +98,7 @@
    KCONFIG:=CONFIG_LEDS_GPIO
    FILES:=$(LINUX_DIR)/drivers/leds/leds-gpio.ko
 -  AUTOLOAD:=$(call AutoLoad,60,leds-gpio,1)
-+  AUTOLOAD:=$(call AutoProbe,leds-gpio,1)
++  AUTOLOAD:=$(call AutoProbe,leds-gpio)
  endef
  
  define KernelPackage/leds-gpio/description
@@ -161,7 +161,7 @@
    KCONFIG:=CONFIG_LEDS_TRIGGER_DEFAULT_ON
    FILES:=$(LINUX_DIR)/drivers/leds/$(if $(call kernel_patchver_ge,3.10),trigger/)ledtrig-default-on.ko
 -  AUTOLOAD:=$(call AutoLoad,50,ledtrig-default-on,1)
-+  AUTOLOAD:=$(call AutoProbe,ledtrig-default-on,1)
++  AUTOLOAD:=$(call AutoProbe,ledtrig-default-on)
  endef
  
  define KernelPackage/ledtrig-default-on/description
@@ -170,7 +170,7 @@
    KCONFIG:=CONFIG_LEDS_TRIGGER_TIMER
    FILES:=$(LINUX_DIR)/drivers/leds/$(if $(call kernel_patchver_ge,3.10),trigger/)ledtrig-timer.ko
 -  AUTOLOAD:=$(call AutoLoad,50,ledtrig-timer,1)
-+  AUTOLOAD:=$(call AutoProbe,ledtrig-timer,1)
++  AUTOLOAD:=$(call AutoProbe,ledtrig-timer)
  endef
  
  define KernelPackage/ledtrig-timer/description
@@ -188,7 +188,7 @@
    KCONFIG:=CONFIG_LEDS_TLC59116
    FILES:=$(LINUX_DIR)/drivers/leds/leds-tlc59116.ko
 -  AUTOLOAD:=$(call AutoLoad,60,leds-tlc59116,1)
-+  AUTOLOAD:=$(call AutoProbe,leds-tlc59116,1)
++  AUTOLOAD:=$(call AutoProbe,leds-tlc59116)
  endef
  
  define KernelPackage/leds-tlc59116/description
@@ -199,7 +199,7 @@
    KCONFIG:=$(KCONFIG_IPT_IPV6)
    FILES:=$(foreach mod,$(IPT_IPV6-m),$(LINUX_DIR)/net/$(mod).ko)
 -  AUTOLOAD:=$(call AutoLoad,42,$(notdir $(IPT_IPV6-m)))
-+  AUTOLOAD:=$(call AutoLoad,20,$(notdir $(IPT_IPV6-m)))
++  AUTOLOAD:=$(call AutoProbe,$(notdir $(IPT_IPV6-m)))
  endef
  
  define KernelPackage/ip6tables/description
