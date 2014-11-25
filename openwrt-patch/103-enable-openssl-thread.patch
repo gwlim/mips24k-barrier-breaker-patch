@@ -1,0 +1,39 @@
+--- ./package/libs/openssl/Makefile	2014-11-25 23:05:17.000000000 +0800
++++ ./package/libs/openssl/Makefile	2014-11-25 23:39:33.252447952 +0800
+@@ -24,7 +24,7 @@ PKG_LICENSE:=SSLEAY OPENSSL
+ PKG_LICENSE_FILES:=LICENSE
+ PKG_BUILD_DEPENDS:=ocf-crypto-headers
+ PKG_CONFIG_DEPENDS:=CONFIG_OPENSSL_ENGINE_CRYPTO CONFIG_OPENSSL_ENGINE_DIGEST \
+-	CONFIG_OPENSSL_WITH_EC CONFIG_OPENSSL_WITH_EC2M
++	CONFIG_OPENSSL_WITH_EC CONFIG_OPENSSL_WITH_EC2M CONFIG_OPENSSL_THREADS
+ 
+ include $(INCLUDE_DIR)/package.mk
+ 
+@@ -82,6 +82,12 @@ OPENSSL_NO_CIPHERS:= no-idea no-md2 no-m
+ 	no-aes192 no-camellia no-ans1 no-krb5
+ OPENSSL_OPTIONS:= shared no-err no-hw zlib-dynamic no-sse2
+ 
++ifdef CONFIG_OPENSSL_THREADS
++  OPENSSL_OPTIONS += threads
++else
++  OPENSSL_OPTIONS += no-threads
++endif
++
+ ifdef CONFIG_OPENSSL_ENGINE_CRYPTO
+   OPENSSL_OPTIONS += -DHAVE_CRYPTODEV
+   ifdef CONFIG_OPENSSL_ENGINE_DIGEST
+--- ./package/libs/openssl/Config.in	2014-11-25 23:05:17.000000000 +0800
++++ ./package/libs/openssl/Config.in	2014-11-25 23:37:07.575165087 +0800
+@@ -14,6 +14,12 @@ config OPENSSL_WITH_EC2M
+ config OPENSSL_ENGINE_CRYPTO
+ 	bool
+ 	prompt "Crypto acceleration support"
++ 
++config OPENSSL_THREADS
++	bool
++	prompt "Threading support"
++	default y
++	select PACKAGE_libpthread
+ 
+ config OPENSSL_ENGINE_DIGEST
+ 	bool
