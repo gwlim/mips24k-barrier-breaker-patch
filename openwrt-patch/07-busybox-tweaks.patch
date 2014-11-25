@@ -1,5 +1,21 @@
 --- ./package/utils/busybox/Config-defaults.in	2014-08-24 12:42:13.000000000 +0800
 +++ ./package/utils/busybox/Config-defaults.in	2014-08-24 13:47:47.325889805 +0800
+@@ -225,13 +225,13 @@ config BUSYBOX_DEFAULT_FEATURE_EDITING
+ 	default y
+ config BUSYBOX_DEFAULT_FEATURE_EDITING_MAX_LEN
+ 	int
+-	default 512
++	default 128
+ config BUSYBOX_DEFAULT_FEATURE_EDITING_VI
+ 	bool
+ 	default n
+ config BUSYBOX_DEFAULT_FEATURE_EDITING_HISTORY
+ 	int
+-	default 256
++	default 8
+ config BUSYBOX_DEFAULT_FEATURE_EDITING_SAVEHISTORY
+ 	bool
+ 	default n
 @@ -1125,13 +1125,13 @@ config BUSYBOX_DEFAULT_USE_BB_CRYPT_SHA
  	default n
  config BUSYBOX_DEFAULT_ADDUSER
@@ -105,3 +121,12 @@
  config BUSYBOX_DEFAULT_BB_SYSCTL
  	bool
  	default y
+@@ -2625,7 +2625,7 @@ config BUSYBOX_DEFAULT_FEATURE_SH_STANDA
+ 	default n
+ config BUSYBOX_DEFAULT_FEATURE_SH_NOFORK
+ 	bool
+-	default n
++	default y
+ config BUSYBOX_DEFAULT_FEATURE_SH_HISTFILESIZE
+ 	bool
+ 	default n
