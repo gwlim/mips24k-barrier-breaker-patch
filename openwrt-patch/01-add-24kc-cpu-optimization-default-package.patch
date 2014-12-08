@@ -6,7 +6,7 @@
  # For router targets
 -DEFAULT_PACKAGES.router:=dnsmasq iptables ip6tables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall odhcpd odhcp6c
 +DEFAULT_PACKAGES.router:=dnsmasq iptables ip6tables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall odhcpd odhcp6c \
-+luci-ssl luci-app-firewall luci-app-p2pblock luci-app-p910nd luci-app-qos luci-app-mwan3 wget \
++luci-ssl luci-app-firewall luci-app-p2pblock luci-app-p910nd luci-app-qos luci-app-mwan3 wget hostapd-utils \
 +luci-app-tinyproxy luci-app-upnp luci-app-wol luci-i18n-english luci-app-ddns xl2tpd uqmi kmod-tun ds-lite \
 +luci-proto-3g luci-proto-ipv6 luci-proto-ppp luci-proto-relay libopenssl zram-swap ppp-mod-pppol2tp ppp-mod-pptp \
 +usb-modeswitch vsftpd-tls igmpproxy 6in4 6rd 6to4 ppp-mod-pptp restorefactory \
