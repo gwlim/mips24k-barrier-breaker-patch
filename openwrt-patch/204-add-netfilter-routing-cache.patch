@@ -1,0 +1,10 @@
+--- ./include/netfilter.mk	2014-12-09 18:59:57.000000000 +0800
++++ ./include/netfilter.mk	2014-12-09 20:08:06.423553779 +0800
+@@ -60,6 +60,7 @@ $(eval $(if $(NF_KMOD),,$(call nf_add,IP
+ 
+ # kernel only
+ $(eval $(if $(NF_KMOD),$(call nf_add,IPT_CONNTRACK,CONFIG_NF_CONNTRACK, $(P_XT)nf_conntrack),))
++$(eval $(if $(NF_KMOD),$(call nf_add,NF_CONNTRACK,CONFIG_NF_CONNTRACK_RTCACHE, $(P_XT)nf_conntrack_rtcache),))
+ $(eval $(if $(NF_KMOD),$(call nf_add,IPT_CONNTRACK,CONFIG_NF_DEFRAG_IPV4, $(P_V4)nf_defrag_ipv4),))
+ $(eval $(if $(NF_KMOD),$(call nf_add,IPT_CONNTRACK,CONFIG_NF_CONNTRACK_IPV4, $(P_V4)nf_conntrack_ipv4),))
+ 
