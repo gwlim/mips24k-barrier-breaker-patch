@@ -102,8 +102,8 @@
 --- /dev/null	2014-12-08 23:04:42.832225361 +0800
 +++ ./target/linux/generic/patches-3.10/2010-ath79-wdt-udelay.patch	2014-12-09 00:52:14.090999385 +0800
 @@ -0,0 +1,11 @@
-+--- ath79_wdt.c.orig	2014-12-08 00:34:47.000000000 +0800
-++++ ath79_wdt.c	2014-12-09 00:51:20.671455198 +0800
++--- a/drivers/watchdog/ath79_wdt.c	2014-12-08 00:34:47.000000000 +0800
+++++ b/drivers/watchdog/ath79_wdt.c	2014-12-09 00:51:20.671455198 +0800
 +@@ -99,7 +99,7 @@ static inline void ath79_wdt_enable(void
 + 	 * that the TIMER register is updated within the hardware
 + 	 * before enabling the watchdog.
