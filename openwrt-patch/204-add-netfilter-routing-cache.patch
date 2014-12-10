@@ -39,7 +39,7 @@ Signed-off-by: Florian Westphal <fw@strlen.de>
  # CONFIG_NF_CT_PROTO_GRE is not set
  # CONFIG_NF_CT_PROTO_SCTP is not set
  # CONFIG_NF_CT_PROTO_UDPLITE is not set
-+# CONFIG_NF_CONNTRACK_RTCACHE is not set
++CONFIG_NF_CONNTRACK_RTCACHE=y
  # CONFIG_NF_DEFRAG_IPV4 is not set
  CONFIG_NF_NAT=y
  # CONFIG_NF_NAT_AMANDA is not set
