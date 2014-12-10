@@ -35,14 +35,16 @@ Signed-off-by: Florian Westphal <fw@strlen.de>
  
 --- ./target/linux/generic/config-3.10	2014-12-09 23:39:16.603562133 +0800
 +++ ./target/linux/generic/config-3.10	2014-12-09 23:38:56.184368996 +0800
-@@ -2262,6 +2262,7 @@ CONFIG_NF_CONNTRACK_PROCFS=y
+@@ -2262,7 +2262,8 @@ CONFIG_NF_CONNTRACK_PROCFS=y
  # CONFIG_NF_CT_PROTO_GRE is not set
  # CONFIG_NF_CT_PROTO_SCTP is not set
  # CONFIG_NF_CT_PROTO_UDPLITE is not set
+-# CONFIG_NF_DEFRAG_IPV4 is not set
 +CONFIG_NF_CONNTRACK_RTCACHE=y
- # CONFIG_NF_DEFRAG_IPV4 is not set
++CONFIG_NF_DEFRAG_IPV4=y
  CONFIG_NF_NAT=y
  # CONFIG_NF_NAT_AMANDA is not set
+ # CONFIG_NF_NAT_FTP is not set
 --- /dev/null	2014-12-09 20:04:54.263762829 +0800
 +++ ./target/linux/generic/patches-3.10/090-backport_netfilter_rtcache.patch	2014-12-09 23:22:46.236696762 +0800
 @@ -0,0 +1,542 @@
