@@ -1,0 +1,178 @@
+Index: /trunk/target/linux/ar71xx/files/drivers/net/ethernet/atheros/ag71xx/ag71xx.h
+===================================================================
+--- a/target/linux/ar71xx/files/drivers/net/ethernet/atheros/ag71xx/ag71xx.h	(revision 43587)
++++ b/target/linux/ar71xx/files/drivers/net/ethernet/atheros/ag71xx/ag71xx.h	(revision 43588)
+@@ -91,5 +91,4 @@
+ 		void		*rx_buf;
+ 	};
+-	struct ag71xx_desc	*desc;
+ 	union {
+ 		dma_addr_t	dma_addr;
+@@ -202,4 +201,10 @@
+ {
+ 	return (desc->ctrl & DESC_EMPTY) != 0;
++}
++
++static inline struct ag71xx_desc *
++ag71xx_ring_desc(struct ag71xx_ring *ring, int idx)
++{
++	return (struct ag71xx_desc *) &ring->descs_cpu[idx * ring->desc_size];
+ }
+ 
+Index: /trunk/target/linux/ar71xx/files/drivers/net/ethernet/atheros/ag71xx/ag71xx_debugfs.c
+===================================================================
+--- a/target/linux/ar71xx/files/drivers/net/ethernet/atheros/ag71xx/ag71xx_debugfs.c	(revision 43587)
++++ b/target/linux/ar71xx/files/drivers/net/ethernet/atheros/ag71xx/ag71xx_debugfs.c	(revision 43588)
+@@ -184,4 +184,5 @@
+ 	for (i = 0; i < ring->size; i++) {
+ 		struct ag71xx_buf *ab = &ring->buf[i];
++		struct ag71xx_desc *desc = ag71xx_ring_desc(ring, i);
+ 		u32 desc_dma = ((u32) ring->descs_dma) + i * ring->desc_size;
+ 
+@@ -193,8 +194,8 @@
+ 			(desc_hw == desc_dma) ? 'H' : ' ',
+ 			desc_dma,
+-			ab->desc->next,
+-			ab->desc->data,
+-			ab->desc->ctrl,
+-			(ab->desc->ctrl & DESC_EMPTY) ? 'E' : '*',
++			desc->next,
++			desc->data,
++			desc->ctrl,
++			(desc->ctrl & DESC_EMPTY) ? 'E' : '*',
+ 			ab->timestamp);
+ 	}
+Index: /trunk/target/linux/ar71xx/files/drivers/net/ethernet/atheros/ag71xx/ag71xx_main.c
+===================================================================
+--- a/target/linux/ar71xx/files/drivers/net/ethernet/atheros/ag71xx/ag71xx_main.c	(revision 43587)
++++ b/target/linux/ar71xx/files/drivers/net/ethernet/atheros/ag71xx/ag71xx_main.c	(revision 43588)
+@@ -101,5 +101,4 @@
+ {
+ 	int err;
+-	int i;
+ 
+ 	ring->desc_size = sizeof(struct ag71xx_desc);
+@@ -125,11 +124,4 @@
+ 	}
+ 
+-	for (i = 0; i < ring->size; i++) {
+-		int idx = i * ring->desc_size;
+-		ring->buf[i].desc = (struct ag71xx_desc *)&ring->descs_cpu[idx];
+-		DBG("ag71xx: ring %p, desc %d at %p\n",
+-			ring, i, ring->buf[i].desc);
+-	}
+-
+ 	return 0;
+ 
+@@ -145,8 +137,10 @@
+ 
+ 	while (ring->curr != ring->dirty) {
++		struct ag71xx_desc *desc;
+ 		u32 i = ring->dirty % ring->size;
+ 
+-		if (!ag71xx_desc_empty(ring->buf[i].desc)) {
+-			ring->buf[i].desc->ctrl = 0;
++		desc = ag71xx_ring_desc(ring, i);
++		if (!ag71xx_desc_empty(desc)) {
++			desc->ctrl = 0;
+ 			dev->stats.tx_errors++;
+ 		}
+@@ -173,8 +167,10 @@
+ 
+ 	for (i = 0; i < ring->size; i++) {
+-		ring->buf[i].desc->next = (u32) (ring->descs_dma +
++		struct ag71xx_desc *desc = ag71xx_ring_desc(ring, i);
++
++		desc->next = (u32) (ring->descs_dma +
+ 			ring->desc_size * ((i + 1) % ring->size));
+ 
+-		ring->buf[i].desc->ctrl = DESC_EMPTY;
++		desc->ctrl = DESC_EMPTY;
+ 		ring->buf[i].skb = NULL;
+ 	}
+@@ -223,4 +219,6 @@
+ 			       int offset)
+ {
++	struct ag71xx_ring *ring = &ag->rx_ring;
++	struct ag71xx_desc *desc = ag71xx_ring_desc(ring, buf - &ring->buf[0]);
+ 	void *data;
+ 
+@@ -234,5 +232,5 @@
+ 	buf->dma_addr = dma_map_single(&ag->dev->dev, data, ag->rx_buf_size,
+ 				       DMA_FROM_DEVICE);
+-	buf->desc->data = (u32) buf->dma_addr + offset;
++	desc->data = (u32) buf->dma_addr + offset;
+ 	return true;
+ }
+@@ -247,13 +245,16 @@
+ 	ret = 0;
+ 	for (i = 0; i < ring->size; i++) {
+-		ring->buf[i].desc->next = (u32) (ring->descs_dma +
++		struct ag71xx_desc *desc = ag71xx_ring_desc(ring, i);
++
++		desc->next = (u32) (ring->descs_dma +
+ 			ring->desc_size * ((i + 1) % ring->size));
+ 
+ 		DBG("ag71xx: RX desc at %p, next is %08x\n",
+-			ring->buf[i].desc,
+-			ring->buf[i].desc->next);
++			desc, desc->next);
+ 	}
+ 
+ 	for (i = 0; i < ring->size; i++) {
++		struct ag71xx_desc *desc = ag71xx_ring_desc(ring, i);
++
+ 		if (!ag71xx_fill_rx_buf(ag, &ring->buf[i], offset)) {
+ 			ret = -ENOMEM;
+@@ -261,5 +262,5 @@
+ 		}
+ 
+-		ring->buf[i].desc->ctrl = DESC_EMPTY;
++		desc->ctrl = DESC_EMPTY;
+ 	}
+ 
+@@ -281,7 +282,9 @@
+ 	count = 0;
+ 	for (; ring->curr - ring->dirty > 0; ring->dirty++) {
++		struct ag71xx_desc *desc;
+ 		unsigned int i;
+ 
+ 		i = ring->dirty % ring->size;
++		desc = ag71xx_ring_desc(ring, i);
+ 
+ 		if (!ring->buf[i].rx_buf &&
+@@ -289,5 +292,5 @@
+ 			break;
+ 
+-		ring->buf[i].desc->ctrl = DESC_EMPTY;
++		desc->ctrl = DESC_EMPTY;
+ 		count++;
+ 	}
+@@ -698,5 +701,5 @@
+ 
+ 		i = (ring->curr + ndesc) % ring->size;
+-		desc = ring->buf[i].desc;
++		desc = ag71xx_ring_desc(ring, i);
+ 
+ 		if (!ag71xx_desc_empty(desc))
+@@ -753,5 +756,5 @@
+ 
+ 	i = ring->curr % ring->size;
+-	desc = ring->buf[i].desc;
++	desc = ag71xx_ring_desc(ring, i);
+ 
+ 	/* setup descriptor fields */
+@@ -908,5 +911,5 @@
+ 	while (ring->dirty + n != ring->curr) {
+ 		unsigned int i = (ring->dirty + n) % ring->size;
+-		struct ag71xx_desc *desc = ring->buf[i].desc;
++		struct ag71xx_desc *desc = ag71xx_ring_desc(ring, i);
+ 		struct sk_buff *skb = ring->buf[i].skb;
+ 
+@@ -964,5 +967,5 @@
+ 	while (done < limit) {
+ 		unsigned int i = ring->curr % ring->size;
+-		struct ag71xx_desc *desc = ring->buf[i].desc;
++		struct ag71xx_desc *desc = ag71xx_ring_desc(ring, i);
+ 		struct sk_buff *skb;
+ 		int pktlen;
