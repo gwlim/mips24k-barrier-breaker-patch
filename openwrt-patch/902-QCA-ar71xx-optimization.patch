@@ -461,34 +461,6 @@
 + static void ag71xx_ring_free(struct ag71xx_ring *ring)
 + {
 --- /dev/null	2014-11-12 20:17:52.826310856 +0800
-+++ ./target/linux/ar71xx/patches-3.10/906-QCA-ag71xx-skb-headroom-increase-for-wifi.patch	2014-11-13 20:54:09.000000000 +0800
-@@ -0,0 +1,25 @@
-+--- ./drivers/net/ethernet/atheros/ag71xx/ag71xx.h	2014-11-13 20:38:27.000000000 +0800
-++++ ./drivers/net/ethernet/atheros/ag71xx/ag71xx.h	2014-11-13 20:45:58.302771762 +0800
-+@@ -55,6 +55,8 @@
-+ #define AG71XX_TX_RING_SPLIT		512
-+ #define AG71XX_TX_RING_DS_PER_PKT	DIV_ROUND_UP(AG71XX_TX_MTU_LEN, \
-+ 						     AG71XX_TX_RING_SPLIT)
-++#define AG71XX_HACK_WIFI_HEADROOM	128
-++	     
-+ #define AG71XX_TX_RING_SIZE_DEFAULT	128
-+ #define AG71XX_RX_RING_SIZE_DEFAULT	128
-+ 
-+--- ./drivers/net/ethernet/atheros/ag71xx/ag71xx_main.c	2014-11-13 20:51:47.000000000 +0800
-++++ ./drivers/net/ethernet/atheros/ag71xx/ag71xx_main.c	2014-11-13 20:53:27.882406424 +0800
-+@@ -220,9 +220,9 @@ static int ag71xx_buffer_offset(struct a
-+ 	 * so we don't need any extra alignment in that case.
-+ 	 */
-+ 	if (!ag71xx_get_pdata(ag)->is_ar724x || ag71xx_has_ar8216(ag))
-+-		return offset;
-++		return offset + AG71XX_HACK_WIFI_HEADROOM;
-+ 
-+-	return offset + NET_IP_ALIGN;
-++	return offset + NET_IP_ALIGN + AG71XX_HACK_WIFI_HEADROOM;
-+ }
-+ 
-+ static bool ag71xx_fill_rx_buf(struct ag71xx *ag, struct ag71xx_buf *buf,
---- /dev/null	2014-11-12 20:17:52.826310856 +0800
 +++ ./target/linux/ar71xx/patches-3.10/908-QCA-reduce-napi-weight.patch	2014-11-13 00:58:19.005114565 +0800
 @@ -0,0 +1,11 @@
 +--- ./drivers/net/ethernet/atheros/ag71xx/ag71xx.h	2014-11-12 23:56:42.000000000 +0800
