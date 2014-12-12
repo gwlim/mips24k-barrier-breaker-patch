@@ -619,3 +619,18 @@
 + 	}								\
 + 									\
 + 	__##pfx##flush_epilogue						\
+--- /dev/null	2014-12-12 19:37:47.222058659 +0800
++++ ./target/linux/ar71xx/patches-3.10/926-ag71xx-DMA-unmap-FROM_DEVICE-no-op-for-our-arch.patch	2014-12-12 20:23:42.139793373 +0800
+@@ -0,0 +1,12 @@
++--- ./drivers/net/ethernet/atheros/ag71xx/ag71xx_main.c	2014-12-11 20:58:04.000000000 +0800
+++++ ./drivers/net/ethernet/atheros/ag71xx/ag71xx_main.c	2014-12-12 19:47:28.634011163 +0800
++@@ -984,9 +984,6 @@ static int ag71xx_rx_packets(struct ag71
++ 		pktlen = desc->ctrl & pktlen_mask;
++ 		pktlen -= ETH_FCS_LEN;
++ 
++-		dma_unmap_single(&dev->dev, ring->buf[i].dma_addr,
++-				 ag->rx_buf_size, DMA_FROM_DEVICE);
++-
++ 		dev->stats.rx_packets++;
++ 		dev->stats.rx_bytes += pktlen;
++ 
