@@ -109,7 +109,7 @@
 + 	 * before enabling the watchdog.
 + 	 */
 +-	udelay(2);
-++	udelay(1);
+++	udelay(3);
 + 
 + 	ath79_wdt_wr(WDOG_REG_CTRL, WDOG_CTRL_ACTION_FCR);
 + 	/* flush write */
