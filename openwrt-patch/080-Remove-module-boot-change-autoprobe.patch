@@ -363,3 +363,24 @@
  endef
  
  define KernelPackage/ip6tables-extra/description
+--- ./package/kernel/linux/modules/fs.mk	2014-12-18 23:10:02.000000000 +0800
++++ ./package/kernel/linux/modules/fs.mk	2014-12-18 23:13:37.875958781 +0800
+@@ -162,7 +162,7 @@ define KernelPackage/fs-ext4
+ 	$(LINUX_DIR)/fs/ext4/ext4.ko \
+ 	$(LINUX_DIR)/fs/jbd2/jbd2.ko \
+ 	$(LINUX_DIR)/fs/mbcache.ko
+-  AUTOLOAD:=$(call AutoLoad,30,mbcache jbd2 ext4,1)
++  AUTOLOAD:=$(call AutoProbe,mbcache jbd2 ext4,1)
+   $(call AddDepends/crc16, +!LINUX_3_3:kmod-crypto-hash)
+ endef
+--- ./package/kernel/linux/modules/block.mk	2014-12-18 23:10:02.000000000 +0800
++++ ./package/kernel/linux/modules/block.mk	2014-12-18 23:49:20.326427968 +0800
+@@ -567,7 +567,7 @@ define KernelPackage/scsi-core
+   FILES:= \
+ 	$(if $(findstring y,$(CONFIG_SCSI)),,$(LINUX_DIR)/drivers/scsi/scsi_mod.ko) \
+ 	$(LINUX_DIR)/drivers/scsi/sd_mod.ko
+-  AUTOLOAD:=$(call AutoLoad,40,sd_mod,1)
++  AUTOLOAD:=$(call AutoProbe,sd_mod,1)
+ endef
+ 
+ $(eval $(call KernelPackage,scsi-core))
