@@ -1,5 +1,14 @@
 --- ./config/Config-kernel.in	2014-08-31 13:47:57.000000000 +0800
 +++ ./config/Config-kernel.in	2014-08-31 13:55:27.482987845 +0800
+@@ -11,7 +11,7 @@ config KERNEL_PRINTK
+ config KERNEL_CRASHLOG
+ 	bool "Crash logging"
+ 	depends on !(arm || powerpc || sparc || TARGET_uml)
+-	default y
++	default n
+ 
+ config KERNEL_SWAP
+ 	bool "Support for paging of anonymous memory (swap)"
 @@ -19,7 +19,7 @@ config KERNEL_SWAP
  
  config KERNEL_DEBUG_FS
@@ -36,6 +45,15 @@
  
  config KERNEL_COREDUMP
  	bool
+@@ -123,7 +123,7 @@ config KERNEL_COREDUMP
+ config KERNEL_ELF_CORE
+ 	bool "Enable process core dump support"
+ 	select KERNEL_COREDUMP
+-	default y
++	default n
+ 
+ config KERNEL_PROVE_LOCKING
+ 	bool "Enable kernel lock checking"
 @@ -144,9 +144,11 @@ config KERNEL_SLABINFO
  	select KERNEL_SLUB_DEBUG
  	select KERNEL_SLUB_DEBUG_ON
