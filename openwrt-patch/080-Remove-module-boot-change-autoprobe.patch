@@ -5,7 +5,7 @@
    TITLE:=Simple GPIO Button Hotplug driver
    FILES:=$(PKG_BUILD_DIR)/gpio-button-hotplug.ko
 -  AUTOLOAD:=$(call AutoLoad,30,gpio-button-hotplug,1)
-+  AUTOLOAD:=$(call AutoProbe,gpio-button-hotplug)
++  AUTOLOAD:=$(call AutoProbe,gpio-button-hotplug,1)
    KCONFIG:=
  endef
 
@@ -16,7 +16,7 @@
    KCONFIG:=CONFIG_CRYPTO_HASH
    FILES:=$(LINUX_DIR)/crypto/crypto_hash.ko
 -  AUTOLOAD:=$(call AutoLoad,02,crypto_hash,1)
-+  AUTOLOAD:=$(call AutoProbe,crypto_hash)
++  AUTOLOAD:=$(call AutoProbe,crypto_hash,1)
    $(call AddDepends/crypto)
  endef
  
@@ -54,7 +54,7 @@
  	$(LINUX_DIR)/drivers/usb/core/usbcore.ko \
  	$(LINUX_DIR)/drivers/usb/usb-common.ko
 -  AUTOLOAD:=$(call AutoLoad,20,usb-common usbcore,1)
-+  AUTOLOAD:=$(call AutoProbe,usb-common usbcore)
++  AUTOLOAD:=$(call AutoProbe,usb-common usbcore,1)
    $(call AddDepends/nls)
  endef
  
@@ -63,7 +63,7 @@
  	CONFIG_USB_OHCI_HCD_PLATFORM=y
    FILES:=$(LINUX_DIR)/drivers/usb/host/ohci-hcd.ko
 -  AUTOLOAD:=$(call AutoLoad,50,ohci-hcd,1)
-+  AUTOLOAD:=$(call AutoProbe,ohci-hcd)
++  AUTOLOAD:=$(call AutoProbe,ohci-hcd,1)
    $(call AddDepends/usb)
  endef
  
@@ -72,11 +72,11 @@
      FILES+=$(LINUX_DIR)/drivers/usb/host/ehci-orion.ko
    endif
 -  AUTOLOAD:=$(call AutoLoad,40,ehci-hcd ehci-platform ehci-orion,1)
-+  AUTOLOAD:=$(call AutoProbe,ehci-hcd ehci-platform ehci-orion)
++  AUTOLOAD:=$(call AutoProbe,ehci-hcd ehci-platform ehci-orion,1)
  else
    FILES:=$(LINUX_DIR)/drivers/usb/host/ehci-hcd.ko
 -  AUTOLOAD:=$(call AutoLoad,40,ehci-hcd,1)
-+  AUTOLOAD:=$(call AutoProbe,ehci-hcd)
++  AUTOLOAD:=$(call AutoProbe,ehci-hcd,1)
  endif
    $(call AddDepends/usb)
  endef
@@ -85,7 +85,7 @@
  	$(LINUX_DIR)/drivers/staging/dwc2/dwc2_platform.ko
  endif
 -  AUTOLOAD:=$(call AutoLoad,54,dwc2 dwc2_platform,1)
-+  AUTOLOAD:=$(call AutoProbe,dwc2 dwc2_platform)
++  AUTOLOAD:=$(call AutoProbe,dwc2 dwc2_platform,1)
    $(call AddDepends/usb)
  endef
  
@@ -94,7 +94,7 @@
    FILES:= \
  	$(LINUX_DIR)/drivers/usb/host/xhci-hcd.ko
 -  AUTOLOAD:=$(call AutoLoad,54,xhci-hcd,1)
-+  AUTOLOAD:=$(call AutoProbe,xhci-hcd)
++  AUTOLOAD:=$(call AutoProbe,xhci-hcd,1)
    $(call AddDepends/usb)
  endef
 
@@ -126,7 +126,7 @@
    KCONFIG:=CONFIG_LEDS_GPIO
    FILES:=$(LINUX_DIR)/drivers/leds/leds-gpio.ko
 -  AUTOLOAD:=$(call AutoLoad,60,leds-gpio,1)
-+  AUTOLOAD:=$(call AutoProbe,leds-gpio)
++  AUTOLOAD:=$(call AutoProbe,leds-gpio,1)
  endef
  
  define KernelPackage/leds-gpio/description
@@ -189,7 +189,7 @@
    KCONFIG:=CONFIG_LEDS_TRIGGER_DEFAULT_ON
    FILES:=$(LINUX_DIR)/drivers/leds/$(if $(call kernel_patchver_ge,3.10),trigger/)ledtrig-default-on.ko
 -  AUTOLOAD:=$(call AutoLoad,50,ledtrig-default-on,1)
-+  AUTOLOAD:=$(call AutoProbe,ledtrig-default-on)
++  AUTOLOAD:=$(call AutoProbe,ledtrig-default-on,1)
  endef
  
  define KernelPackage/ledtrig-default-on/description
@@ -198,7 +198,7 @@
    KCONFIG:=CONFIG_LEDS_TRIGGER_TIMER
    FILES:=$(LINUX_DIR)/drivers/leds/$(if $(call kernel_patchver_ge,3.10),trigger/)ledtrig-timer.ko
 -  AUTOLOAD:=$(call AutoLoad,50,ledtrig-timer,1)
-+  AUTOLOAD:=$(call AutoProbe,ledtrig-timer)
++  AUTOLOAD:=$(call AutoProbe,ledtrig-timer,1)
  endef
  
  define KernelPackage/ledtrig-timer/description
@@ -216,7 +216,7 @@
    KCONFIG:=CONFIG_LEDS_TLC59116
    FILES:=$(LINUX_DIR)/drivers/leds/leds-tlc59116.ko
 -  AUTOLOAD:=$(call AutoLoad,60,leds-tlc59116,1)
-+  AUTOLOAD:=$(call AutoProbe,leds-tlc59116)
++  AUTOLOAD:=$(call AutoProbe,leds-tlc59116,1)
  endef
  
  define KernelPackage/leds-tlc59116/description
@@ -363,8 +363,8 @@
  endef
  
  define KernelPackage/ip6tables-extra/description
---- ./package/kernel/linux/modules/fs.mk	2014-12-18 23:10:02.000000000 +0800
-+++ ./package/kernel/linux/modules/fs.mk	2014-12-18 23:13:37.875958781 +0800
+--- ./package/kernel/linux/modules/fs.mk	2014-12-19 00:09:41.430990499 +0800
++++ ./package/kernel/linux/modules/fs.mk	2014-12-19 00:14:38.207956922 +0800
 @@ -162,7 +162,7 @@ define KernelPackage/fs-ext4
  	$(LINUX_DIR)/fs/ext4/ext4.ko \
  	$(LINUX_DIR)/fs/jbd2/jbd2.ko \
@@ -373,8 +373,9 @@
 +  AUTOLOAD:=$(call AutoProbe,mbcache jbd2 ext4,1)
    $(call AddDepends/crc16, +!LINUX_3_3:kmod-crypto-hash)
  endef
---- ./package/kernel/linux/modules/block.mk	2014-12-18 23:10:02.000000000 +0800
-+++ ./package/kernel/linux/modules/block.mk	2014-12-18 23:49:20.326427968 +0800
+ 
+--- ./package/kernel/linux/modules/block.mk	2014-12-19 00:04:45.000000000 +0800
++++ ./package/kernel/linux/modules/block.mk	2014-12-19 00:15:29.712458185 +0800
 @@ -567,7 +567,7 @@ define KernelPackage/scsi-core
    FILES:= \
  	$(if $(findstring y,$(CONFIG_SCSI)),,$(LINUX_DIR)/drivers/scsi/scsi_mod.ko) \
