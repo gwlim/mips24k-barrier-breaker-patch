@@ -5,7 +5,7 @@
  	if [ -z "$zram_size" ]; then
  		# e.g. 6mb for 16mb-routers or 61mb for 128mb-routers
 -		echo $(( $ram_size / 2048 ))
-+		echo $(( $ram_size / 8192 ))
++		echo $(( $ram_size / 16384 ))
  	else
  		echo "$zram_size"
  	fi
