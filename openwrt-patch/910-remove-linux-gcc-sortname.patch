@@ -1,0 +1,14 @@
+--- /dev/null	2014-12-20 11:20:57.415893619 +0800
++++ ./target/linux/generic/patches-3.10/306-remove-section-sort.patch	2014-12-20 13:02:08.574476302 +0800
+@@ -0,0 +1,11 @@
++--- a/arch/mips/Makefile
+++++ b/arch/mips/Makefile
++@@ -89,7 +89,7 @@ all-$(CONFIG_SYS_SUPPORTS_ZBOOT)+= vmlin
++ #
++ cflags-y			+= -G 0 -mno-abicalls -fno-pic -pipe -mno-branch-likely
++ cflags-y			+= -msoft-float
++-LDFLAGS_vmlinux			+= -G 0 -static -n -nostdlib --gc-sections --sort-section=name
+++LDFLAGS_vmlinux			+= -G 0 -static -n -nostdlib --gc-sections
++ ifdef CONFIG_64BIT
++ KBUILD_AFLAGS_MODULE		+= -mlong-calls
++ KBUILD_CFLAGS_MODULE		+= -mlong-calls
