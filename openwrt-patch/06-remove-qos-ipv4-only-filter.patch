@@ -9,3 +9,19 @@
  		if (direction == "up") {
  			filter_1 = sprintf("0x%x0/0xf0", class[i])
  			filter_2 = sprintf("0x0%x/0x0f", class[i])
+--- ./package/network/config/qos-scripts/files/usr/lib/qos/generate.sh	2014-12-23 18:57:57.000000000 +0800
++++ ./package/network/config/qos-scripts/files/usr/lib/qos/generate.sh	2014-12-23 19:02:14.613397128 +0800
+@@ -341,11 +341,11 @@ tc class add dev $dev parent 1: classid
+ 	if [ -n "$halfduplex" ]; then
+ 		export dev_up="tc qdisc del dev $device root >&- 2>&-
+ tc qdisc add dev $device root handle 1: hfsc
+-tc filter add dev $device parent 1: protocol ip prio 10 u32 match u32 0 0 flowid 1:1 action mirred egress redirect dev ifb$ifbdev"
++tc filter add dev $device parent 1: prio 10 u32 match u32 0 0 flowid 1:1 action mirred egress redirect dev ifb$ifbdev"
+ 	elif [ -n "$download" ]; then
+ 		append dev_${dir} "tc qdisc del dev $device ingress >&- 2>&-
+ tc qdisc add dev $device ingress
+-tc filter add dev $device parent ffff: protocol ip prio 1 u32 match u32 0 0 flowid 1:1 action connmark action mirred egress redirect dev ifb$ifbdev" "$N"
++tc filter add dev $device parent ffff: prio 1 u32 match u32 0 0 flowid 1:1 action connmark action mirred egress redirect dev ifb$ifbdev" "$N"
+ 	fi
+ 	add_insmod cls_fw
+ 	add_insmod sch_hfsc
