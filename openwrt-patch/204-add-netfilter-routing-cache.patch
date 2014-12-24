@@ -165,7 +165,7 @@ Signed-off-by: Florian Westphal <fw@strlen.de>
 + obj-$(CONFIG_NF_CT_PROTO_GRE) += nf_conntrack_proto_gre.o
 +--- /dev/null
 ++++ b/net/netfilter/nf_conntrack_rtcache.c
-+@@ -0,0 +1,427 @@
++@@ -0,0 +1,428 @@
 ++/* route cache for netfilter.
 ++ *
 ++ * (C) 2014 Red Hat GmbH
@@ -187,6 +187,7 @@ Signed-off-by: Florian Westphal <fw@strlen.de>
 ++#include <linux/module.h>
 ++
 ++#include <net/dst.h>
+++#include <net/xfrm.h>
 ++
 ++#include <net/netfilter/nf_conntrack.h>
 ++#include <net/netfilter/nf_conntrack_core.h>
