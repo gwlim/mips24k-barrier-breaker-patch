@@ -3,8 +3,8 @@
 @@ -0,0 +1,1232 @@
 +Index: /src/router/openssl/crypto/aes/asm/aes-mips.pl
 +===================================================================
-+--- /src/router/openssl/crypto/aes/asm/aes-mips.pl	(revision 25964)
-++++ /src/router/openssl/crypto/aes/asm/aes-mips.pl	(revision 25965)
++--- a/crypto/aes/asm/aes-mips.pl	(revision 25964)
+++++ b/crypto/aes/asm/aes-mips.pl	(revision 25965)
 +@@ -20,4 +20,11 @@
 + # thing about this module is its endian neutrality, which means that
 + # it processes data without ever changing byte order...
