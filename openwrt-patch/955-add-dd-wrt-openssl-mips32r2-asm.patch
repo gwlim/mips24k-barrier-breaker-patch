@@ -1,6 +1,6 @@
 --- /dev/null	2015-01-22 19:39:40.540248399 +0800
-+++ ./package/libs/openssl/patches/213-openssl-mips-asm.patch	2015-01-22 19:57:15.000000000 +0800
-@@ -0,0 +1,1693 @@
++++ ./package/libs/openssl/patches/213-openssl-mips-asm.patch	2015-01-22 20:55:51.903952787 +0800
+@@ -0,0 +1,1667 @@
 +--- a/crypto/aes/asm/aes-mips.pl	2015-01-08 22:00:56.000000000 +0800
 ++++ b/crypto/aes/asm/aes-mips.pl	2015-01-22 19:13:57.000000000 +0800
 +@@ -20,6 +20,13 @@
@@ -39,6 +39,15 @@
 + 	$REG_S="sw";
 + 	$REG_L="lw";
 + 	$PTR_SLL="sll";
++@@ -70,7 +79,7 @@ $pf = ($flavour =~ /nubi/i) ? $t0 : $t2;
++ #
++ ######################################################################
++ 
++-$big_endian=(`echo MIPSEL | $ENV{CC} -E -`=~/MIPSEL/)?1:0 if ($ENV{CC});
+++$big_endian=(`echo MIPSEL | $ENV{CC} -E -P -`=~/MIPSEL/)?1:0;
++ 
++ for (@ARGV) {	$output=$_ if (/^\w[\w\-]*\.\w+$/);	}
++ open STDOUT,">$output";
 +@@ -89,7 +98,11 @@ $code.=<<___;
 + # include <openssl/fipssyms.h>
 + #endif
@@ -513,6 +522,15 @@
 + 	xor	$s0,$t0
 + 	xor	$s1,$t1
 + 	xor	$s2,$t2
++@@ -385,7 +642,7 @@ $code.=<<___ if ($flavour =~ /nubi/i);	#
++ ___
++ $code.=<<___ if ($flavour !~ /o32/i);	# non-o32 PIC-ification
++ 	.cplocal	$Tbl
++-	.cpsetup	$pf,$zero,AES_encrypt
+++	.cpsetup	$pf,$zero,asm_AES_encrypt
++ ___
++ $code.=<<___;
++ 	.set	reorder
 +@@ -455,6 +712,89 @@ _mips_AES_decrypt:
 + 	xor	$s3,$t3
 + 
@@ -1004,6 +1022,15 @@
 + 
 + 	xor	$s0,$t0
 + 	xor	$s1,$t1
++@@ -721,7 +1213,7 @@ $code.=<<___ if ($flavour =~ /nubi/i);	#
++ ___
++ $code.=<<___ if ($flavour !~ /o32/i);	# non-o32 PIC-ification
++ 	.cplocal	$Tbl
++-	.cpsetup	$pf,$zero,AES_decrypt
+++	.cpsetup	$pf,$zero,asm_AES_decrypt
++ ___
++ $code.=<<___;
++ 	.set	reorder
 +@@ -791,7 +1283,7 @@ _mips_AES_set_encrypt_key:
 + 	beqz	$inp,.Lekey_done
 + 	li	$t0,-1
@@ -1073,25 +1100,7 @@
 + 	sll	$i0,24
 + 	sll	$i1,16
 + 	sll	$i2,8
-+@@ -1036,9 +1528,9 @@ _mips_AES_set_encrypt_key:
-+ 	nop
-+ .end	_mips_AES_set_encrypt_key
-+ 
-+-.globl	private_AES_set_encrypt_key
-+-.ent	private_AES_set_encrypt_key
-+-private_AES_set_encrypt_key:
-++.globl	AES_set_encrypt_key
-++.ent	AES_set_encrypt_key
-++AES_set_encrypt_key:
-+ 	.frame	$sp,$FRAMESIZE,$ra
-+ 	.mask	$SAVED_REGS_MASK,-$SZREG
-+ 	.set	noreorder
-+@@ -1060,11 +1552,11 @@ $code.=<<___ if ($flavour =~ /nubi/i);	#
-+ ___
-+ $code.=<<___ if ($flavour !~ /o32/i);	# non-o32 PIC-ification
-+ 	.cplocal	$Tbl
-+-	.cpsetup	$pf,$zero,private_AES_set_encrypt_key
-++	.cpsetup	$pf,$zero,AES_set_encrypt_key
++@@ -1064,7 +1556,7 @@ $code.=<<___ if ($flavour !~ /o32/i);	#
 + ___
 + $code.=<<___;
 + 	.set	reorder
@@ -1100,34 +1109,7 @@
 + 
 + 	bal	_mips_AES_set_encrypt_key
 + 
-+@@ -1083,7 +1575,7 @@ ___
-+ $code.=<<___;
-+ 	jr	$ra
-+ 	$PTR_ADD $sp,$FRAMESIZE
-+-.end	private_AES_set_encrypt_key
-++.end	AES_set_encrypt_key
-+ ___
-+ 
-+ my ($head,$tail)=($inp,$bits);
-+@@ -1091,9 +1583,9 @@ my ($tp1,$tp2,$tp4,$tp8,$tp9,$tpb,$tpd,$
-+ my ($m,$x80808080,$x7f7f7f7f,$x1b1b1b1b)=($at,$t0,$t1,$t2);
-+ $code.=<<___;
-+ .align	5
-+-.globl	private_AES_set_decrypt_key
-+-.ent	private_AES_set_decrypt_key
-+-private_AES_set_decrypt_key:
-++.globl	AES_set_decrypt_key
-++.ent	AES_set_decrypt_key
-++AES_set_decrypt_key:
-+ 	.frame	$sp,$FRAMESIZE,$ra
-+ 	.mask	$SAVED_REGS_MASK,-$SZREG
-+ 	.set	noreorder
-+@@ -1115,11 +1607,11 @@ $code.=<<___ if ($flavour =~ /nubi/i);	#
-+ ___
-+ $code.=<<___ if ($flavour !~ /o32/i);	# non-o32 PIC-ification
-+ 	.cplocal	$Tbl
-+-	.cpsetup	$pf,$zero,private_AES_set_decrypt_key
-++	.cpsetup	$pf,$zero,AES_set_decrypt_key
++@@ -1119,7 +1611,7 @@ $code.=<<___ if ($flavour !~ /o32/i);	#
 + ___
 + $code.=<<___;
 + 	.set	reorder
@@ -1161,15 +1143,6 @@
 + 	sub	$cnt,1
 + 	sw	$tpe,0($key)
 + 	$PTR_ADD $key,4
-+@@ -1226,7 +1729,7 @@ ___
-+ $code.=<<___;
-+ 	jr	$ra
-+ 	$PTR_ADD $sp,$FRAMESIZE
-+-.end	private_AES_set_decrypt_key
-++.end	AES_set_decrypt_key
-+ ___
-+ }}}
-+ 
 +@@ -1234,7 +1737,7 @@ ___
 + # Tables are kept in endian-neutral manner
 + $code.=<<___;
@@ -1295,6 +1268,7 @@
 + 	print $_,"\n";
 + }
 + 
++
 +--- a/crypto/bn/asm/mips-mont.pl	2015-01-08 22:00:36.000000000 +0800
 ++++ b/crypto/bn/asm/mips-mont.pl	2015-01-22 19:13:57.000000000 +0800
 +@@ -46,7 +46,7 @@
