@@ -1,0 +1,18 @@
+--- /dev/null	2015-01-26 18:51:19.414344033 +0800
++++ ./target/linux/ar71xx/patches-3.10/927-cacheline-more-struct.patch	2015-01-26 22:55:25.748891001 +0800
+@@ -0,0 +1,15 @@
++--- ./drivers/net/ethernet/atheros/ag71xx/ag71xx.h	2015-01-26 22:45:03.000000000 +0800
+++++ ./drivers/net/ethernet/atheros/ag71xx/ag71xx.h	2015-01-26 22:53:50.685089129 +0800
++@@ -149,9 +149,9 @@ struct ag71xx {
++ 	struct ag71xx_ring	rx_ring ____cacheline_aligned;
++ 	struct ag71xx_ring	tx_ring ____cacheline_aligned;
++ 
++-	struct net_device	*dev;
++-	struct platform_device	*pdev;
++-	spinlock_t		lock;
+++	struct net_device	*dev ____cacheline_aligned;
+++	struct platform_device	*pdev ____cacheline_aligned;
+++	spinlock_t		lock;
++ 	struct napi_struct	napi;
++ 	void __iomem		*mac_base;
++ 	u32			msg_enable;
