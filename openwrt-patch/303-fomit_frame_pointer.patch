@@ -1,0 +1,11 @@
+--- a/target/linux/generic/patches-3.10/302-mips_no_branch_likely.patch	2015-02-18 18:25:30.000000000 +0800
++++ b/target/linux/generic/patches-3.10/302-mips_no_branch_likely.patch	2015-02-18 19:09:59.562533150 +0800
+@@ -5,7 +5,7 @@
+  # crossformat linking we rely on the elf2ecoff tool for format conversion.
+  #
+ -cflags-y			+= -G 0 -mno-abicalls -fno-pic -pipe
+-+cflags-y			+= -G 0 -mno-abicalls -fno-pic -pipe -mno-branch-likely
+++cflags-y			+= -G 0 -mno-abicalls -fno-pic -pipe -mno-branch-likely -fomit-frame-pointer -mips32r2 -mtune=24kc -mplt -fno-caller-saves -mno-mips16 
+  cflags-y			+= -msoft-float
+  LDFLAGS_vmlinux			+= -G 0 -static -n -nostdlib --gc-sections --sort-section=name
+  KBUILD_AFLAGS_MODULE		+= -mlong-calls
