@@ -1,0 +1,67 @@
+--- ./feeds/luci/modules/base/luasrc/sys.lua	2015-02-21 17:35:55.000000000 +0800
++++ ./feeds/luci/modules/base/luasrc/sys.lua	2015-02-21 22:18:36.644807939 +0800
+@@ -175,15 +175,12 @@ function sysinfo()
+ 	local memcached = tonumber(meminfo:match("\nCached:%s*(%d+)"))
+ 	local memfree = tonumber(meminfo:match("MemFree:%s*(%d+)"))
+ 	local membuffers = tonumber(meminfo:match("Buffers:%s*(%d+)"))
+-	local bogomips = tonumber(cpuinfo:match("[Bb]ogo[Mm][Ii][Pp][Ss].-: ([^\n]+)")) or 0
+ 	local swaptotal = tonumber(meminfo:match("SwapTotal:%s*(%d+)"))
+ 	local swapcached = tonumber(meminfo:match("SwapCached:%s*(%d+)"))
+ 	local swapfree = tonumber(meminfo:match("SwapFree:%s*(%d+)"))
+ 
+-	local system =
+-		cpuinfo:match("system type\t+: ([^\n]+)") or
+-		cpuinfo:match("Processor\t+: ([^\n]+)") or
+-		cpuinfo:match("model name\t+: ([^\n]+)")
++	local system = cpuinfo:match("system type\t+: ([^\n]+)")
++	local march = cpuinfo:match("cpu model\t+: ([^\n]+)")
+ 
+ 	local model =
+ 		luci.util.pcdata(fs.readfile("/tmp/sysinfo/model")) or
+@@ -193,7 +190,7 @@ function sysinfo()
+ 		nixio.uname().machine or
+ 		system
+ 
+-	return system, model, memtotal, memcached, membuffers, memfree, bogomips, swaptotal, swapcached, swapfree
++	return model, system, march, memtotal, memcached, membuffers, memfree, swaptotal, swapcached, swapfree
+ end
+ 
+ --- Retrieves the output of the "logread" command.
+--- ./feeds/luci/modules/admin-full/luasrc/view/admin_status/index.htm	2015-02-21 17:46:22.000000000 +0800
++++ ./feeds/luci/modules/admin-full/luasrc/view/admin_status/index.htm	2015-02-21 22:24:35.402743271 +0800
+@@ -19,7 +19,7 @@ You may obtain a copy of the License at
+ 	local has_dhcp = luci.fs.access("/etc/config/dhcp")
+ 	local has_wifi = luci.fs.stat("/etc/config/wireless")
+ 	      has_wifi = has_wifi and has_wifi.size > 0
+-	local _, _, memtotal, memcached, membuffers, memfree, _, swaptotal, swapcached, swapfree = luci.sys.sysinfo()
++	local _, _, _, memtotal, memcached, membuffers, memfree, _, swaptotal, swapcached, swapfree = luci.sys.sysinfo()
+ 	local has_swap
+ 	if swaptotal > 0 then
+ 		has_swap = 1
+@@ -96,7 +96,7 @@ You may obtain a copy of the License at
+ 		return
+ 	end
+ 
+-	local system, model = luci.sys.sysinfo()
++	local model, system, march = luci.sys.sysinfo()
+ -%>
+ 
+ <%+header%>
+@@ -562,6 +562,8 @@ You may obtain a copy of the License at
+ 	<table width="100%" cellspacing="10">
+ 		<tr><td width="33%"><%:Hostname%></td><td><%=luci.sys.hostname() or "?"%></td></tr>
+ 		<tr><td width="33%"><%:Model%></td><td><%=pcdata(model or "?")%></td></tr>
++		<tr><td width="33%"><%:System%></td><td><%=pcdata(system or "?")%></td></tr>
++		<tr><td width="33%"><%:Processor%></td><td><%=pcdata(march or "?")%></td></tr>
+ 		<tr><td width="33%"><%:Firmware Version%></td><td>
+ 			<%=pcdata(luci.version.distname)%> <%=pcdata(luci.version.distversion)%> /
+ 			<%=pcdata(luci.version.luciname)%>
+@@ -591,7 +593,7 @@ You may obtain a copy of the License at
+ 	<table width="100%" cellspacing="10">
+ 		<tr><td width="33%"><%:Total Available%></td><td id="swaptotal">-</td></tr>
+ 		<tr><td width="33%"><%:Free%></td><td id="swapfree">-</td></tr>
+-		<tr><td width="33%"><%:Cached%></td><td id="swapcache">-</td></tr>
++		<tr><td width="33%"><%:Cached%></td><td id="swapcached">-</td></tr>
+ 	</table>
+ </fieldset>
+ <% end %>
