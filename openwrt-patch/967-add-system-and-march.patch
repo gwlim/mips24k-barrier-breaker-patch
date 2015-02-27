@@ -61,7 +61,7 @@
  		<tr><td width="33%"><%:Total Available%></td><td id="swaptotal">-</td></tr>
  		<tr><td width="33%"><%:Free%></td><td id="swapfree">-</td></tr>
 -		<tr><td width="33%"><%:Cached%></td><td id="swapcache">-</td></tr>
-+		<tr><td width="33%"><%:Cached%></td><td id="swapcached">-</td></tr>
++		<tr><td width="33%"><%:Cached%></td><td id="swapcache">-</td></tr>
  	</table>
  </fieldset>
  <% end %>
