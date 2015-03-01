@@ -6,17 +6,17 @@
  	$(call mklibs)
 -
 +	
-+	rm $(TARGET_DIR)/etc/rc.d/S50p910nd
-+	rm $(TARGET_DIR)/etc/rc.d/S50qos
-+	rm $(TARGET_DIR)/etc/rc.d/S50tinyproxy
-+	rm $(TARGET_DIR)/etc/rc.d/S50vsftpd
-+	rm $(TARGET_DIR)/etc/rc.d/S60etherwake
-+	
-+	rm $(TARGET_DIR)/etc/rc.d/S60xl2tpd
-+	rm $(TARGET_DIR)/etc/rc.d/S82freifunk-p2pblock
-+	rm $(TARGET_DIR)/etc/rc.d/S95ddns
-+	rm $(TARGET_DIR)/etc/rc.d/S95miniupnpd
-+	rm $(TARGET_DIR)/etc/rc.d/S99igmpproxy
++	rm -f $(TARGET_DIR)/etc/rc.d/S50p910nd
++	rm -f $(TARGET_DIR)/etc/rc.d/S50qos
++	rm -f $(TARGET_DIR)/etc/rc.d/S50tinyproxy
++	rm -f $(TARGET_DIR)/etc/rc.d/S50vsftpd
++	rm -f $(TARGET_DIR)/etc/rc.d/S60etherwake
++	rm -f $(TARGET_DIR)/etc/rc.d/S50sqm
++	rm -f $(TARGET_DIR)/etc/rc.d/S60xl2tpd
++	rm -f $(TARGET_DIR)/etc/rc.d/S82freifunk-p2pblock
++	rm -f $(TARGET_DIR)/etc/rc.d/S95ddns
++	rm -f $(TARGET_DIR)/etc/rc.d/S95miniupnpd
++	rm -f $(TARGET_DIR)/etc/rc.d/S99igmpproxy
  PASSOPT=""
  PASSARG=""
  ifndef CONFIG_OPKGSMIME_PASSPHRASE
