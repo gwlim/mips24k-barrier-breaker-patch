@@ -5,7 +5,7 @@ set -e
 echo -n src-git packagetrunk https://github.com/openwrt/packages.git >> feeds.conf.default
 ./scripts/feeds update packagetrunk
 ./scripts/feeds install luci-app-sqm
-./scripts/feeds install luci-app-bcp
+./scripts/feeds install luci-app-bcp38
 ./scripts/feeds install sqm-scripts
 echo Remove Support for PPPOA
 rm ./feeds/luci/protocols/ppp/luasrc/model/cbi/admin_network/proto_pppoa.lua
