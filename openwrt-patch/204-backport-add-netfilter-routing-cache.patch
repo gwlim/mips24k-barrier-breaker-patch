@@ -165,7 +165,7 @@ Signed-off-by: Florian Westphal <fw@strlen.de>
 + obj-$(CONFIG_NF_CT_PROTO_GRE) += nf_conntrack_proto_gre.o
 +--- /dev/null
 ++++ b/net/netfilter/nf_conntrack_rtcache.c
-+@@ -0,0 +1,428 @@
++@@ -0,0 +1,424 @@
 ++/* route cache for netfilter.
 ++ *
 ++ * (C) 2014 Red Hat GmbH
@@ -187,7 +187,6 @@ Signed-off-by: Florian Westphal <fw@strlen.de>
 ++#include <linux/module.h>
 ++
 ++#include <net/dst.h>
-++#include <net/xfrm.h>
 ++
 ++#include <net/netfilter/nf_conntrack.h>
 ++#include <net/netfilter/nf_conntrack_core.h>
@@ -378,9 +377,6 @@ Signed-off-by: Florian Westphal <fw@strlen.de>
 ++	enum ip_conntrack_dir dir;
 ++	struct nf_conn *ct;
 ++	int iif;
-++
-++	if (secpath_exists(skb))
-++		return NF_ACCEPT;
 ++
 ++	ct = nf_ct_get(skb, &ctinfo);
 ++	if (!ct)
