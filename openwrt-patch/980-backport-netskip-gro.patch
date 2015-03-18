@@ -1,0 +1,15 @@
+--- /dev/null	2015-03-17 02:11:05.399557537 +0800
++++ ./target/linux/generic/patches-3.10/980-backport-netskip-gro.patch	2015-03-17 02:34:07.722174088 +0800
+@@ -0,0 +1,12 @@
++--- a/net/core/dev.c	2015-03-16 02:08:33.000000000 +0800
+++++ b/net/core/dev.c	2015-03-17 02:32:45.200281133 +0800
++@@ -3774,6 +3774,9 @@ static enum gro_result dev_gro_receive(s
++ 	int same_flow;
++ 	enum gro_result ret;
++ 
+++	if (skb->pkt_type == PACKET_OTHERHOST)
+++		goto normal;
+++
++ 	if (!(skb->dev->features & NETIF_F_GRO) || netpoll_rx_on(skb))
++ 		goto normal;
++ 
