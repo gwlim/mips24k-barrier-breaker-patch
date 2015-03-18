@@ -1,0 +1,20 @@
+--- ./target/linux/ar71xx/files/arch/mips/ath79/mach-tl-wdr4300.c	2015-03-14 02:14:47.000000000 +0800
++++ ./target/linux/ar71xx/files/arch/mips/ath79/mach-tl-wdr4300.c	2015-03-17 02:19:30.594266318 +0800
+@@ -103,6 +103,7 @@ static struct gpio_keys_button wdr4300_g
+ 		.code		= KEY_RFKILL,
+ 		.debounce_interval = WDR4300_KEYS_DEBOUNCE_INTERVAL,
+ 		.gpio		= WDR4300_GPIO_BTN_RFKILL,
++		.active_low	= 1,
+ 	},
+ };
+ 
+--- ./target/linux/ar71xx/files/arch/mips/ath79/mach-tl-wdr3500.c	2015-03-14 02:14:47.000000000 +0800
++++ ./target/linux/ar71xx/files/arch/mips/ath79/mach-tl-wdr3500.c	2015-03-17 02:18:43.597523800 +0800
+@@ -99,6 +99,7 @@ static struct gpio_keys_button wdr3500_g
+ 		.code		= KEY_RFKILL,
+ 		.debounce_interval = WDR3500_KEYS_DEBOUNCE_INTERVAL,
+ 		.gpio		= WDR3500_GPIO_BTN_RFKILL,
++		.active_low	= 1,
+ 	},
+ };
+ 
