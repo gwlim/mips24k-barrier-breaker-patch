@@ -1,0 +1,19 @@
+--- ./feeds/luci/themes/bootstrap/htdocs/luci-static/bootstrap/cascade.css	2015-05-02 14:51:58.000000000 +0800
++++ ./feeds/luci/themes/bootstrap/htdocs/luci-static/bootstrap/cascade.css	2015-05-02 14:56:10.038640256 +0800
+@@ -424,7 +424,7 @@ textarea {
+ 
+ form .input,
+ form .cbi-value-field {
+-	margin-left: 200px;
++	margin-left: 70px;
+ }
+ 
+ form .cbi-value label.cbi-value-title {
+@@ -432,7 +432,6 @@ form .cbi-value label.cbi-value-title {
+ 	font-size: 13px;
+ 	line-height: 18px;
+ 	float: left;
+-	width: 180px;
+ 	text-align: right;
+ 	color: #404040;
+ }
