@@ -1,0 +1,27 @@
+--- ./feeds/luci/modules/admin-full/luasrc/model/cbi/admin_network/dhcp.lua	2015-05-02 15:07:01.000000000 +0800
++++ ./feeds/luci/modules/admin-full/luasrc/model/cbi/admin_network/dhcp.lua	2015-05-03 01:26:14.629762954 +0800
+@@ -183,7 +183,7 @@ em = s:taboption("advanced", Value, "edn
+ 
+ em.optional = true
+ em.datatype = "uinteger"
+-em.placeholder = 1280
++em.placeholder = 4096
+ 
+ 
+ cq = s:taboption("advanced", Value, "dnsforwardmax",
+@@ -195,6 +195,15 @@ cq.datatype = "uinteger"
+ cq.placeholder = 150
+ 
+ 
++cs = s:taboption("advanced", Value, "cachesize",
++	translate("<abbr title=\"Domain Name System\">DNS</abbr> Cache size"),
++	translate("Set size of DNS Cache"))
++
++cs.optional = true
++cs.datatype = "uinteger"
++cs.placeholder = 150
++
++
+ s:taboption("tftp", Flag, "enable_tftp",
+ 	translate("Enable TFTP server")).optional = true
+ 
