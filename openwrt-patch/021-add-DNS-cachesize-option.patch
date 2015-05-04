@@ -1,6 +1,16 @@
 --- ./feeds/luci/modules/admin-full/luasrc/model/cbi/admin_network/dhcp.lua	2015-05-02 15:07:01.000000000 +0800
 +++ ./feeds/luci/modules/admin-full/luasrc/model/cbi/admin_network/dhcp.lua	2015-05-03 01:26:14.629762954 +0800
-@@ -183,7 +183,7 @@ em = s:taboption("advanced", Value, "edn
+@@ -105,6 +105,9 @@ s:taboption("advanced", Flag, "strictord
+ 	translate("<abbr title=\"Domain Name System\">DNS</abbr> servers will be queried in the " ..
+ 		"order of the resolvfile")).optional = true
+ 
++s:taboption("advanced", Flag, "allservers",
++	translate("All Servers"),
++	translate("Query all available upstream <abbr title=\"Domain Name System\">DNS</abbr> servers")).optional = true
+ 
+ bn = s:taboption("advanced", DynamicList, "bogusnxdomain", translate("Bogus NX Domain Override"),
+ 	translate("List of hosts that supply bogus NX domain results"))
+@@ -183,7 +186,7 @@ em = s:taboption("advanced", Value, "edn
  
  em.optional = true
  em.datatype = "uinteger"
@@ -9,7 +19,7 @@
  
  
  cq = s:taboption("advanced", Value, "dnsforwardmax",
-@@ -195,6 +195,15 @@ cq.datatype = "uinteger"
+@@ -195,6 +198,15 @@ cq.datatype = "uinteger"
  cq.placeholder = 150
  
  
@@ -25,3 +35,13 @@
  s:taboption("tftp", Flag, "enable_tftp",
  	translate("Enable TFTP server")).optional = true
  
+--- a/package/network/services/dnsmasq/files/dnsmasq.init	2015-05-04 19:27:49.000000000 +0800
++++ b/package/network/services/dnsmasq/files/dnsmasq.init	2015-05-04 19:28:00.909235122 +0800
+@@ -112,6 +112,7 @@ dnsmasq() {
+ 	append_bool "$cfg" nohosts "--no-hosts"
+ 	append_bool "$cfg" nonegcache "--no-negcache"
+ 	append_bool "$cfg" strictorder "--strict-order"
++	append_bool "$cfg" allservers "--all-servers"
+ 	append_bool "$cfg" logqueries "--log-queries"
+ 	append_bool "$cfg" noresolv "--no-resolv"
+ 	append_bool "$cfg" localise_queries "--localise-queries"
