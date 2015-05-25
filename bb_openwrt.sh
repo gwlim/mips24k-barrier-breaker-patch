@@ -15,10 +15,10 @@ rm ./target/linux/ar71xx/base-files/lib/upgrade/allnet.sh
             echo Applying patch $i
             patch -p1 < openwrt-patch/$i
         done
-wget https://closure-compiler.googlecode.com/files/compiler-20131014.zip
+wget http://dl.google.com/closure-compiler/compiler-latest.zip
 wget https://github.com/yui/yuicompressor/releases/download/v2.4.8/yuicompressor-2.4.8.jar
 wget http://htmlcompressor.googlecode.com/files/htmlcompressor-1.5.3.jar
-unzip -qn compiler-20131014.zip
+unzip -qn compiler-latest.zip
 directory=./feeds
 for file in $( find $directory -name '*.js' )
 do
