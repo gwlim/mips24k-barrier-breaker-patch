@@ -591,11 +591,32 @@
 + 	}								\
 + 									\
 + 	__##pfx##flush_epilogue						\
---- /dev/null	2014-12-12 19:37:47.222058659 +0800
-+++ ./target/linux/ar71xx/patches-3.10/926-ag71xx-DMA-unmap-FROM_DEVICE-no-op-for-our-arch.patch	2014-12-12 20:23:42.139793373 +0800
-@@ -0,0 +1,12 @@
+--- /dev/null	2015-06-05 22:22:04.700812748 +0800
++++ 926-ag71xx-DMA-unmap-FROM_DEVICE-no-op-for-our-arch.patch	2015-06-06 11:23:14.078152840 +0800
+@@ -0,0 +1,33 @@
 +--- ./drivers/net/ethernet/atheros/ag71xx/ag71xx_main.c	2014-12-11 20:58:04.000000000 +0800
 ++++ ./drivers/net/ethernet/atheros/ag71xx/ag71xx_main.c	2014-12-12 19:47:28.634011163 +0800
++@@ -199,8 +199,6 @@ static void ag71xx_ring_rx_clean(struct
++ 
++ 	for (i = 0; i < ring->size; i++)
++ 		if (ring->buf[i].rx_buf) {
++-			dma_unmap_single(&ag->dev->dev, ring->buf[i].dma_addr,
++-					 ag->rx_buf_size, DMA_FROM_DEVICE);
++ 			kfree(ring->buf[i].rx_buf);
++ 		}
++ }
++
++@@ -797,9 +795,6 @@ static netdev_tx_t ag71xx_hard_start_xmi
++ 
++ 	return NETDEV_TX_OK;
++ 
++-err_drop_unmap:
++-	dma_unmap_single(&dev->dev, dma_addr, skb->len, DMA_TO_DEVICE);
++-
++ err_drop:
++ 	dev->stats.tx_dropped++;
++ 
++
 +@@ -984,9 +984,6 @@ static int ag71xx_rx_packets(struct ag71
 + 		pktlen = desc->ctrl & pktlen_mask;
 + 		pktlen -= ETH_FCS_LEN;
