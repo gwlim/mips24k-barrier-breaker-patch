@@ -1,6 +1,6 @@
 --- ./feeds/luci/applications/luci-p2pblock/luasrc/model/cbi/luci_fw/p2pblock.lua	2015-06-09 19:04:56.000000000 +0800
 +++ ./feeds/luci/applications/luci-p2pblock/luasrc/model/cbi/luci_fw/p2pblock.lua	2015-06-09 19:53:19.764997448 +0800
-@@ -45,21 +45,18 @@ s:option(DynamicList, "whitelist", trans
+@@ -45,7 +45,6 @@ s:option(DynamicList, "whitelist", trans
  
  l7 = s:option(MultiValue, "layer7", translate("Layer7-Protocols"))
  l7.widget = "checkbox"
@@ -8,20 +8,12 @@
  l7:value("bittorrent", "Bittorrent")
  l7:value("edonkey", "eDonkey, eMule, Kademlia")
  l7:value("fasttrack", "Fasttrack Protocol")
--l7:value("ftp", "File Transfer Protocol")
- l7:value("gnutella", "Gnutella")
--l7:value("http", "Hypertext Transfer Protocol")
+@@ -55,8 +54,6 @@ l7:value("http", "Hypertext Transfer Pro
  l7:value("ident", "Ident Protocol")
  l7:value("irc", "Internet Relay Chat")
  l7:value("jabber", "Jabber/XMPP")
 -l7:value("msnmessenger", "MSN Messenger")
 -l7:value("ntp", "Network Time Protocol")
  l7:value("pop3", "POP3 Protocol")
-+l7:value("rdp", "Remote Desktop Protocol")
  l7:value("smtp", "SMTP Protocol")
--l7:value("ssl", "SSL Protocol")
-+l7:value("ssh", "SSH Protocol")
-+l7:value("tor", "The Onion Router Protocol")
- l7:value("vnc", "VNC Protocol")
- 
- ipp2p = s:option(MultiValue, "ipp2p", translate("IP-P2P"))
+ l7:value("ssl", "SSL Protocol")

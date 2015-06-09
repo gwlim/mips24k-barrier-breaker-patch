@@ -40,14 +40,22 @@ done
 #  java -jar htmlcompressor-1.5.3.jar -o "$file-min.htm" "$file"
 #  mv -b "$file-min.htm" "$file"
 #done
-echo Update L7 Protocol List
-wget http://download.clearfoundation.com/l7-filter/l7-protocols-2009-05-28.tar.gz
-tar -zxf l7-protocols-2009-05-28.tar.gz
-cp  ./l7-protocols-2009-05-28/protocols/ssh.pat  ./package/network/utils/iptables/files/l7/
-rm  ./package/network/utils/iptables/files/l7/aim.pat
-rm  ./package/network/utils/iptables/files/l7/msnmessenger.pat
-rm  ./package/network/utils/iptables/files/l7/ntp.pat
 
+#Uncomment 7 lines below to remove L7-Protocol not in used
+#echo Update L7 Protocol List
+#wget http://download.clearfoundation.com/l7-filter/l7-protocols-2009-05-28.tar.gz
+#tar -zxf l7-protocols-2009-05-28.tar.gz
+#cp  ./l7-protocols-2009-05-28/protocols/ssh.pat  ./package/network/utils/iptables/files/l7/
+#rm  ./package/network/utils/iptables/files/l7/aim.pat
+#rm  ./package/network/utils/iptables/files/l7/msnmessenger.pat
+#rm  ./package/network/utils/iptables/files/l7/ntp.pat
+
+#Comment the lines below to enable L7-Protocol
+rm ./target/linux/generic/patches-3.10/600-netfilter_layer7_2.22.patch
+rm ./target/linux/generic/patches-3.10/601-netfilter_layer7_pktmatch.patch
+rm ./target/linux/generic/patches-3.10/602-netfilter_layer7_match.patch
+rm ./target/linux/generic/patches-3.10/603-netfilter_layer7_2.6.36_fix.patch
+rm ./package/network/utils/iptables/patches/002-layer7_2.22.patch
 
 make defconfig
 rm .config

@@ -1,0 +1,30 @@
+--- ./package/network/utils/iptables/Makefile	2015-06-09 22:31:02.000000000 +0800
++++ ./package/network/utils/iptables/Makefile	2015-06-09 23:18:19.969596679 +0800
+@@ -476,15 +476,10 @@ define BuildPlugin
+   $$(eval $$(call BuildPackage,$(1)))
+ endef
+ 
+-L7_INSTALL:=\
+-	$(INSTALL_DIR) $$(1)/etc/l7-protocols; \
+-	$(CP) files/l7/*.pat $$(1)/etc/l7-protocols/
+-
+-
+ $(eval $(call BuildPackage,iptables))
+ $(eval $(call BuildPlugin,iptables-mod-conntrack-extra,$(IPT_CONNTRACK_EXTRA-m)))
+ $(eval $(call BuildPlugin,iptables-mod-extra,$(IPT_EXTRA-m)))
+-$(eval $(call BuildPlugin,iptables-mod-filter,$(IPT_FILTER-m),$(L7_INSTALL)))
++$(eval $(call BuildPlugin,iptables-mod-filter,$(IPT_FILTER-m)))
+ $(eval $(call BuildPlugin,iptables-mod-ipopt,$(IPT_IPOPT-m)))
+ $(eval $(call BuildPlugin,iptables-mod-ipsec,$(IPT_IPSEC-m)))
+ $(eval $(call BuildPlugin,iptables-mod-nat-extra,$(IPT_NAT_EXTRA-m)))
+
+--- ./include/netfilter.mk	2015-06-09 22:36:03.000000000 +0800
++++ ./include/netfilter.mk	2015-06-09 23:34:10.687349545 +0800
+@@ -94,7 +94,6 @@ $(eval $(call nf_add,IPT_EXTRA,CONFIG_NE
+ 
+ # filter
+ 
+-$(eval $(call nf_add,IPT_FILTER,CONFIG_NETFILTER_XT_MATCH_LAYER7, $(P_XT)xt_layer7))
+ $(eval $(call nf_add,IPT_FILTER,CONFIG_NETFILTER_XT_MATCH_STRING, $(P_XT)xt_string))
+ 
+ 
