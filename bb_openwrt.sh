@@ -40,6 +40,19 @@ done
 #  java -jar htmlcompressor-1.5.3.jar -o "$file-min.htm" "$file"
 #  mv -b "$file-min.htm" "$file"
 #done
+echo Update L7 Protocol List
+wget http://download.clearfoundation.com/l7-filter/l7-protocols-2009-05-28.tar.gz
+tar -zxf l7-protocols-2009-05-28.tar.gz
+cp  ./l7-protocols-2009-05-28/protocols/rdp.pat  ./package/network/utils/iptables/files/l7/
+cp  ./l7-protocols-2009-05-28/protocols/ssh.pat  ./package/network/utils/iptables/files/l7/
+cp  ./l7-protocols-2009-05-28/protocols/tor.pat  ./package/network/utils/iptables/files/l7/
+rm  ./package/network/utils/iptables/files/l7/aim.pat
+rm  ./package/network/utils/iptables/files/l7/ftp.pat
+rm  ./package/network/utils/iptables/files/l7/http.pat
+rm  ./package/network/utils/iptables/files/l7/msnmessenger.pat
+rm  ./package/network/utils/iptables/files/l7/ntp.pat
+rm  ./package/network/utils/iptables/files/l7/ssl.pat
+
 
 make defconfig
 rm .config
