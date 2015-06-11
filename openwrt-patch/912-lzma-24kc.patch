@@ -1,0 +1,16 @@
+--- ./target/linux/ar71xx/image/lzma-loader/src/Makefile	2015-06-11 20:06:38.000000000 +0800
++++ ./target/linux/ar71xx/image/lzma-loader/src/Makefile	2015-06-11 20:49:29.174066495 +0800
+@@ -31,10 +31,10 @@ BIN_FLAGS	:= -O binary -R .reginfo -R .n
+ 
+ CFLAGS		= -D__KERNEL__ -Wall -Wstrict-prototypes -Wno-trigraphs -Os \
+ 		  -fno-strict-aliasing -fno-common -fomit-frame-pointer -G 0 \
+-		  -mno-abicalls -fno-pic -ffunction-sections -pipe -mlong-calls \
++		  -mno-abicalls -fno-pic -ffunction-sections -pipe -mno-long-calls \
+ 		  -fno-common -ffreestanding -fhonour-copts \
+-		  -mabi=32 -march=mips32r2 \
+-		  -Wa,-32 -Wa,-march=mips32r2 -Wa,-mips32r2 -Wa,--trap
++		  -mabi=32 -march=mips32r2 -mtune=24kc \
++		  -Wa,-32 -Wa,-march=mips32r2 -mtune=24kc -Wa,-mips32r2 -mtune=24kc -Wa,--trap
+ CFLAGS		+= -D_LZMA_PROB32
+ 
+ ASFLAGS		= $(CFLAGS) -D__ASSEMBLY__
