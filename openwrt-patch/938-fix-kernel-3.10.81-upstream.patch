@@ -1,0 +1,11 @@
+--- ./target/linux/generic/patches-3.10/645-bridge_multicast_to_unicast.patch	2015-06-23 20:46:55.000000000 +0800
++++ ./target/linux/generic/patches-3.10/645-bridge_multicast_to_unicast.patch	2015-06-23 21:13:05.470048864 +0800
+@@ -130,7 +130,7 @@
+  		err = br_ip6_multicast_add_group(br, port, &grec->grec_mca,
+ -						 vid);
+ +						 vid, src);
+- 		if (!err)
++ 		if (err)
+  			break;
+  	}
+ @@ -1302,7 +1329,8 @@ static void br_multicast_leave_group(str
