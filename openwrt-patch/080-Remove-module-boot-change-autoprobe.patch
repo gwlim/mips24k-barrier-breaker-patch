@@ -378,10 +378,10 @@
 +++ ./package/kernel/linux/modules/block.mk	2014-12-19 00:15:29.712458185 +0800
 @@ -567,7 +567,7 @@ define KernelPackage/scsi-core
    FILES:= \
- 	$(if $(findstring y,$(CONFIG_SCSI)),,$(LINUX_DIR)/drivers/scsi/scsi_mod.ko) \
+ 	$(LINUX_DIR)/drivers/scsi/scsi_mod.ko \
  	$(LINUX_DIR)/drivers/scsi/sd_mod.ko
 -  AUTOLOAD:=$(call AutoLoad,40,sd_mod,1)
-+  AUTOLOAD:=$(call AutoProbe,sd_mod,1)
++  AUTOLOAD:=$(call AutoLoad,40,scsi_mod sd_mod,1)
  endef
  
  $(eval $(call KernelPackage,scsi-core))
