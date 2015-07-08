@@ -10,7 +10,7 @@
 +ls.optional = true
 +
 +qd = s:taboption("general", Flag, "quietdhcp",
-+	translate("Supress DHCP routine logging"),
++	translate("Suppress DHCP routine logging"),
 +	translate("Suppress logging of the routine operation of these protocols"))
 +qd.optional = true
 +
