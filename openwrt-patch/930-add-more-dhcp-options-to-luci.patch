@@ -1,0 +1,23 @@
+--- ./feeds/luci/modules/admin-full/luasrc/model/cbi/admin_network/dhcp.lua
++++ ./feeds/luci/modules/admin-full/luasrc/model/cbi/admin_network/dhcp.lua
+@@ -141,6 +141,20 @@ rl = s:taboption("general", Flag, "rebin
+ 
+ rl:depends("rebind_protection", "1")
+ 
++ls = s:taboption("general", Flag, "localservice",
++	translate("Only allow local service"),
++	translate("Accept DNS queries only from hosts whose address is on a local subnet"))
++ls.optional = true
++
++qd = s:taboption("general", Flag, "quietdhcp",
++	translate("Supress DHCP routine logging"),
++	translate("Suppress logging of the routine operation of these protocols"))
++qd.optional = true
++
++si = s:taboption("general", Flag, "sequential_ip",
++	translate("Allocate IP sequentially"),
++	translate("Allocate IP sequentially starting from the lowest available address"))
++si.optional = true
+ 
+ rd = s:taboption("general", DynamicList, "rebind_domain",
+ 	translate("Domain whitelist"),

@@ -1,0 +1,12 @@
+--- ./package/network/services/dnsmasq/files/dnsmasq.init
++++ ./package/network/services/dnsmasq/files/dnsmasq.init
+@@ -124,6 +124,9 @@ dnsmasq() {
+ 	append_bool "$cfg" nonwildcard "--bind-interfaces"
+ 	append_bool "$cfg" fqdn "--dhcp-fqdn"
+ 	append_bool "$cfg" proxydnssec "--proxy-dnssec"
++	append_bool "$cfg" localservice "--local-service"
++	append_bool "$cfg" quietdhcp "--quiet-dhcp"
++	append_bool "$cfg" sequential_ip "--dhcp-sequential-ip"
+ 
+ 	append_parm "$cfg" dhcpscript "--dhcp-script"
+ 	append_parm "$cfg" cachesize "--cache-size"
