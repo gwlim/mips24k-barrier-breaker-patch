@@ -5,6 +5,6 @@
  	config EXTRA_OPTIMIZATION
  		string "Additional compiler options" if DEVEL
 -		default "-fno-caller-saves"
-+		default "-fno-caller-saves -fno-caller-saves -fomit-frame-pointer"
++		default "-fno-caller-saves -fno-caller-saves -fomit-frame-pointer -freorder-blocks"
  		help
  		  Extra Target-independent optimizations to use when building for the target.
