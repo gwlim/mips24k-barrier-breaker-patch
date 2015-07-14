@@ -7,7 +7,7 @@
 -      PKG_REV:=4.8-2014.04
 -      PKG_VERSION:=4.8.3
 +      PKG_REV:=4.8-2015.06
-+      PKG_VERSION:=4.8.4
++      PKG_VERSION:=4.8.5
        PKG_VERSION_MAJOR:=4.8
 -      PKG_MD5SUM:=5ba2f3a449b1658ccc09d27cc7ab3c03
 +      PKG_MD5SUM:=b985b5c476b93d616c4a8d13a0acc85f
