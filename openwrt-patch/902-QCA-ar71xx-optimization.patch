@@ -367,10 +367,10 @@
 + #endif /* __ASM_MACH_AR71XX_REGS_H */
 --- /dev/null	2014-11-12 20:17:52.826310856 +0800
 +++ ./target/linux/ar71xx/patches-3.10/902-QCA-no-l2-cache-runtime-check.patch	2014-11-12 23:38:36.306128904 +0800
-@@ -0,0 +1,26 @@
+@@ -0,0 +1,31 @@
 +--- ./arch/mips/include/asm/mach-ath79/cpu-feature-overrides.h	2014-11-12 22:12:50.000000000 +0800
 ++++ ./arch/mips/include/asm/mach-ath79/cpu-feature-overrides.h	2014-11-12 23:23:30.337019433 +0800
-+@@ -22,6 +22,7 @@
++@@ -22,23 +22,24 @@
 + #define cpu_has_4k_cache	1
 + #define cpu_has_tx39_cache	0
 + #define cpu_has_sb1_cache	0
@@ -378,8 +378,13 @@
 + #define cpu_has_fpu		0
 + #define cpu_has_32fpr		0
 + #define cpu_has_counter		1
-+@@ -33,13 +33,13 @@
-+ #define cpu_has_ejtag		1
++-#define cpu_has_watch		1
+++#define cpu_has_watch		1
++ #define cpu_has_divec		1
++ 
++ #define cpu_has_prefetch	1
++-#define cpu_has_ejtag		1
+++#define cpu_has_ejtag		0
 + #define cpu_has_llsc		1
 + 
 +-#define cpu_has_mips16		1
