@@ -388,14 +388,14 @@
 + #define cpu_has_llsc		1
 + 
 +-#define cpu_has_mips16		1
-++#define cpu_has_mips16		0
+++#define cpu_has_mips16		1
 + #define cpu_has_mdmx		0
 + #define cpu_has_mips3d		0
 + #define cpu_has_smartmips	0
 + #define cpu_has_rixi		0
 + 
 +-#define cpu_has_mips32r1	1
-++#define cpu_has_mips32r1	0
+++#define cpu_has_mips32r1	1
 + #define cpu_has_mips32r2	1
 + #define cpu_has_mips64r1	0
 + #define cpu_has_mips64r2	0
