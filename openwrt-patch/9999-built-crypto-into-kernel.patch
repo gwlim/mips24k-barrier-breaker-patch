@@ -1,0 +1,35 @@
+--- ./package/kernel/mac80211/Makefile
++++ ./package/kernel/mac80211/Makefile
+@@ -79,7 +79,7 @@ endef
+ define KernelPackage/mac80211
+   $(call KernelPackage/mac80211/Default)
+   TITLE:=Linux 802.11 Wireless Networking Stack
+-  DEPENDS+= +kmod-crypto-core +kmod-crypto-arc4 +kmod-crypto-aes +kmod-cfg80211 +hostapd-common
++  DEPENDS+= +kmod-cfg80211 +hostapd-common
+   KCONFIG:=\
+ 	CONFIG_AVERAGE=y
+   FILES:= $(PKG_BUILD_DIR)/net/mac80211/mac80211.ko
+
+--- ./target/linux/generic/config-3.10
++++ ./target/linux/generic/config-3.10
+@@ -590,9 +590,9 @@ CONFIG_CRYPTO_ALGAPI=y
+ CONFIG_CRYPTO_ALGAPI2=y
+ # CONFIG_CRYPTO_ANSI_CPRNG is not set
+ # CONFIG_CRYPTO_ANUBIS is not set
+-# CONFIG_CRYPTO_ARC4 is not set
++CONFIG_CRYPTO_ARC4=y
+ # CONFIG_CRYPTO_AUTHENC is not set
+-# CONFIG_CRYPTO_BLKCIPHER is not set
++CONFIG_CRYPTO_BLKCIPHER=y
+ # CONFIG_CRYPTO_BLOWFISH is not set
+ # CONFIG_CRYPTO_CAMELLIA is not set
+ # CONFIG_CRYPTO_CAST5 is not set
+@@ -624,7 +624,7 @@ CONFIG_CRYPTO_ALGAPI2=y
+ # CONFIG_CRYPTO_GHASH_CLMUL_NI_INTEL is not set
+ # CONFIG_CRYPTO_HASH is not set
+ # CONFIG_CRYPTO_HMAC is not set
+-# CONFIG_CRYPTO_HW is not set
++CONFIG_CRYPTO_HW=y
+ # CONFIG_CRYPTO_KHAZAD is not set
+ # CONFIG_CRYPTO_LRW is not set
+ # CONFIG_CRYPTO_LZO is not set
