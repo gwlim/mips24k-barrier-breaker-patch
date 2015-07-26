@@ -10,3 +10,13 @@
  	CONFIG_AVERAGE=y
    FILES:= $(PKG_BUILD_DIR)/net/mac80211/mac80211.ko
 
+@@ -1495,7 +1495,6 @@ config_package=$(if $(CONFIG_PACKAGE_kmo
+ 
+ config-y:= \
+ 	WLAN \
+-	NL80211_TESTMODE \
+ 	CFG80211_WEXT \
+ 	CFG80211_INTERNAL_REGDB \
+ 	CFG80211_CERTIFICATION_ONUS \
+
+
