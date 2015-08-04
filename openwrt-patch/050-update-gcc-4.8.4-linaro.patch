@@ -14,7 +14,7 @@
        PKG_COMP:=xz
      endif
 -    PKG_SOURCE_URL:=http://launchpad.net/gcc-linaro/$(PKG_VERSION_MAJOR)/$(PKG_REV)/+download/
-+    PKG_SOURCE_URL:=http://releases.linaro.org/14.11/components/toolchain/gcc-linaro/$(PKG_VERSION_MAJOR)/
++    PKG_SOURCE_URL:=http://releases.linaro.org/15.06/components/toolchain/gcc-linaro/$(PKG_VERSION_MAJOR)/
      PKG_SOURCE:=$(PKG_NAME)-linaro-$(PKG_REV).tar.$(PKG_COMP)
      GCC_DIR:=gcc-linaro-$(PKG_REV)
      HOST_BUILD_DIR:=$(BUILD_DIR_TOOLCHAIN)/$(GCC_DIR)
