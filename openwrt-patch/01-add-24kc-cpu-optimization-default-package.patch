@@ -7,7 +7,7 @@
 -DEFAULT_PACKAGES.router:=dnsmasq iptables ip6tables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall odhcpd odhcp6c
 +DEFAULT_PACKAGES.router:=dnsmasq iptables ip6tables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall odhcpd odhcp6c \
 +luci-ssl luci-app-firewall luci-app-sqm luci-app-mwan3 wget hostapd-utils \
-+luci-app-tinyproxy luci-app-upnp luci-app-wol luci-i18n-english luci-app-ddns xl2tpd uqmi kmod-tun ds-lite \
++luci-app-upnp luci-app-wol luci-i18n-english luci-app-ddns xl2tpd uqmi kmod-tun ds-lite \
 +luci-proto-3g luci-proto-ipv6 luci-proto-ppp luci-proto-relay libopenssl ppp-mod-pppol2tp ppp-mod-pptp \
 +usb-modeswitch vsftpd-tls igmpproxy 6in4 6rd 6to4 ppp-mod-pptp restorefactory kmod-usb-printer kmod-usb-storage kmod-fs-ext4 block-mount \
 +kmod-usb-serial kmod-usb-serial-option kmod-usb-net-cdc-ncm kmod-usb-net-rndis kmod-usb-net-qmi-wwan kmod-usb-net-cdc-ether kmod-usb-net-sierrawireless kmod-usb-acm kmod-usb-serial-sierrawireless kmod-usb-serial-qualcomm kmod-usb-net
@@ -19,7 +19,7 @@
        CPU_TYPE ?= mips32
      endif
 -    CPU_CFLAGS += -mno-branch-likely
-+    CPU_CFLAGS += -mno-branch-likely -mno-mips16 -mplt -msym32 -fno-caller-saves -fomit-frame-pointer
++    CPU_CFLAGS += -mno-branch-likely -mno-mips16 -mplt -msym32 -fno-caller-saves -fomit-frame-pointer -mno-long-calls -fsee -finline
      CPU_CFLAGS_mips32 = -mips32 -mtune=mips32
      CPU_CFLAGS_mips32r2 = -mips32r2 -mtune=mips32r2
      CPU_CFLAGS_mips64 = -mips64 -mtune=mips64 -mabi=64
