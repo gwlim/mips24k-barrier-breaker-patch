@@ -49,7 +49,7 @@ done
 #rm  ./package/network/utils/iptables/files/l7/aim.pat
 #rm  ./package/network/utils/iptables/files/l7/msnmessenger.pat
 #rm  ./package/network/utils/iptables/files/l7/ntp.pat
-
+rm ./target/linux/generic/patches-3.10/063-arm-fix-fiq-vivt.patch
 #Comment the lines below to enable L7-Protocol
 rm ./target/linux/generic/patches-3.10/600-netfilter_layer7_2.22.patch
 rm ./target/linux/generic/patches-3.10/601-netfilter_layer7_pktmatch.patch
