@@ -1,5 +1,5 @@
 --- /dev/null	2015-09-27 14:43:10.919117865 +0800
-+++ ./package/kernel/mac80211/patches/	2015-09-27 14:53:04.021844806 +0800
++++ ./package/kernel/mac80211/patches/397-ath9k-declare-required-extra-tx-headroom.patch	2015-09-27 14:53:04.021844806 +0800
 @@ -0,0 +1,11 @@
 +--- ./drivers/net/wireless/ath/ath9k/init.c	2015-09-27 14:51:47.000000000 +0800
 ++++ ./drivers/net/wireless/ath/ath9k/init.c	2015-09-27 14:52:05.707875696 +0800
