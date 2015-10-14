@@ -1,0 +1,14 @@
+--- /dev/null	2015-10-10 05:09:46.945829081 +0800
++++ ./target/linux/ar71xx/patches-3.10/952-netdev-align-NET_SKB_PAD-for-our-platform.patch	2015-10-10 11:54:43.476619996 +0800
+@@ -0,0 +1,11 @@
++--- ./include/linux/skbuff.h	2015-09-30 20:27:45.000000000 +0800
+++++ ./include/linux/skbuff.h	2015-10-10 11:24:29.099990894 +0800
++@@ -1849,7 +1849,7 @@ static inline int pskb_network_may_pull(
++  * NET_IP_ALIGN(2) + ethernet_header(14) + IP_header(20/40) + ports(8)
++  */
++ #ifndef NET_SKB_PAD
++-#define NET_SKB_PAD	max(64, L1_CACHE_BYTES)
+++#define NET_SKB_PAD	max(32, L1_CACHE_BYTES)
++ #endif
++ 
++ extern int ___pskb_trim(struct sk_buff *skb, unsigned int len);
