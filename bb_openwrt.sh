@@ -2,10 +2,6 @@
 set -e
 ./scripts/feeds update -a
 ./scripts/feeds install -a
-echo -n src-git packagetrunk https://github.com/openwrt/packages.git >> feeds.conf.default
-./scripts/feeds update packagetrunk
-./scripts/feeds install bcp38
-./scripts/feeds install luci-app-bcp38
 echo Remove Support for PPPOA
 rm ./feeds/luci/protocols/ppp/luasrc/model/cbi/admin_network/proto_pppoa.lua
 echo Remove Support for DIR-825 and AllNet Devices
