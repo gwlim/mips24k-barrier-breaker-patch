@@ -147,8 +147,8 @@ index b320e30..15f5d79 100644
  define Package/ppp-mod-pppol2tp/description
  This package contains a PPPoL2TP (PPP over L2TP) plugin for ppp.
  endef
---- feeds/packages/net/tinyproxy/Makefile	2015-11-03 23:10:51.563049958 +0800
-+++ feeds/packages/net/tinyproxy/Makefile	2015-11-03 23:10:59.542043717 +0800
+--- a/feeds/packages/net/tinyproxy/Makefile	2015-11-03 23:10:51.563049958 +0800
++++ b/feeds/packages/net/tinyproxy/Makefile	2015-11-03 23:10:59.542043717 +0800
 @@ -24,6 +24,7 @@ define Package/tinyproxy
    SUBMENU:=Web Servers/Proxies
    SECTION:=net
@@ -169,8 +169,8 @@ index f9ade14..467f98c 100644
    TITLE:=A low-level library for netfilter related kernel/userspace communication
    URL:=http://netfilter.org/projects/libnfnetlink/
  endef
---- feeds/packages/net/etherwake/Makefile	2015-11-03 23:13:07.674154511 +0800
-+++ feeds/packages/net/etherwake/Makefile	2015-11-03 23:13:13.526162317 +0800
+--- a/feeds/packages/net/etherwake/Makefile	2015-11-03 23:13:07.674154511 +0800
++++ b/feeds/packages/net/etherwake/Makefile	2015-11-03 23:13:13.526162317 +0800
 @@ -24,6 +24,7 @@ define Package/etherwake
    CATEGORY:=Network
    TITLE:=WoL client for magic packets via ethernet frames
@@ -179,8 +179,8 @@ index f9ade14..467f98c 100644
    MAINTAINER:=Peter Wagner <tripolar@gmx.at>
  endef
  
---- feeds/packages/libs/pcre/Makefile	2015-11-03 23:14:11.116241197 +0800
-+++ feeds/packages/libs/pcre/Makefile	2015-11-03 23:14:17.186249701 +0800
+--- a/feeds/packages/libs/pcre/Makefile	2015-11-03 23:14:11.116241197 +0800
++++ b/feeds/packages/libs/pcre/Makefile	2015-11-03 23:14:17.186249701 +0800
 @@ -28,6 +28,7 @@ include $(INCLUDE_DIR)/package.mk
  define Package/libpcre/default
    SECTION:=libs
