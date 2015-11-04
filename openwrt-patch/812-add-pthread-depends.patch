@@ -1,0 +1,242 @@
+diff --git a/package/libs/libjson-c/Makefile b/package/libs/libjson-c/Makefile
+index 4e0c47d..e6a98b1 100644
+--- a/package/libs/libjson-c/Makefile
++++ b/package/libs/libjson-c/Makefile
+@@ -30,6 +30,7 @@ TARGET_CFLAGS += $(FPIC)
+ define Package/libjson-c
+   SECTION:=libs
+   CATEGORY:=Libraries
++  DEPENDS:=+libpthread
+   TITLE:=javascript object notation
+   URL:=http://oss.metaparadigm.com/json-c/
+ endef
+@@ -41,7 +42,7 @@ endef
+ define Package/libjson
+   SECTION:=libs
+   CATEGORY:=Libraries
+-  DEPENDS:=+libjson-c
++  DEPENDS:=+libjson-c +libpthread
+   TITLE:=javascript object notation (compat library)
+   URL:=http://oss.metaparadigm.com/json-c/
+ endef
+diff --git a/package/libs/libubox/Makefile b/package/libs/libubox/Makefile
+index ac160bf..91beaf0 100644
+--- a/package/libs/libubox/Makefile
++++ b/package/libs/libubox/Makefile
+@@ -27,7 +27,7 @@ define Package/libubox
+   CATEGORY:=Libraries
+   TITLE:=Basic utility library
+   ABI_VERSION:=$(PKG_VERSION)
+-  DEPENDS:=
++  DEPENDS:=+libpthread
+ endef
+ 
+ define Package/libblobmsg-json
+diff --git a/package/libs/zlib/Makefile b/package/libs/zlib/Makefile
+index fea831d..9da473a 100644
+--- a/package/libs/zlib/Makefile
++++ b/package/libs/zlib/Makefile
+@@ -25,6 +25,7 @@ define Package/zlib
+   CATEGORY:=Libraries
+   TITLE:=Library implementing the deflate compression method
+   URL:=http://www.zlib.net/
++  DEPENDS:=+libpthread
+ endef
+ 
+ define Build/Configure
+diff --git a/package/utils/px5g/Makefile b/package/utils/px5g/Makefile
+index 8677a8b..7a40329 100644
+--- a/package/utils/px5g/Makefile
++++ b/package/utils/px5g/Makefile
+@@ -19,7 +19,7 @@ define Package/px5g
+   CATEGORY:=Utilities
+   TITLE:=X.509 certificate generator (using PolarSSL)
+   MAINTAINER:=Jo-Philipp Wich <jow@openwrt.org>
+-  DEPENDS:=+libpolarssl
++  DEPENDS:=+libpolarssl +libpthread
+ endef
+ 
+ define Package/px5g/description
+diff --git a/package/network/utils/iptables/Makefile b/package/network/utils/iptables/Makefile
+index 27201b4..5bf21e3 100644
+--- a/package/network/utils/iptables/Makefile
++++ b/package/network/utils/iptables/Makefile
+@@ -360,6 +360,7 @@ define Package/libip4tc
+ $(call Package/iptables/Default)
+   SECTION:=libs
+   CATEGORY:=Libraries
++  DEPENDS:=+libpthread
+   TITLE:=IPv4 firewall - shared libiptc library
+ endef
+ 
+@@ -367,6 +368,7 @@ define Package/libip6tc
+ $(call Package/iptables/Default)
+   SECTION:=libs
+   CATEGORY:=Libraries
++  DEPENDS:=+libpthread
+   TITLE:=IPv6 firewall - shared libiptc library
+ endef
+ 
+@@ -374,6 +376,7 @@ define Package/libxtables
+  $(call Package/iptables/Default)
+  SECTION:=libs
+  CATEGORY:=Libraries
++ DEPENDS:=+libpthread
+  TITLE:=IPv4/IPv6 firewall - shared xtables library
+ endef
+ 
+diff --git a/package/network/utils/resolveip/Makefile b/package/network/utils/resolveip/Makefile
+index d1e675e..d9767b6 100644
+--- a/package/network/utils/resolveip/Makefile
++++ b/package/network/utils/resolveip/Makefile
+@@ -16,6 +16,7 @@ define Package/resolveip
+   SECTION:=utils
+   CATEGORY:=Base system
+   TITLE:=Simple DNS resolver with configurable timeout
++  DEPENDS:=+libpthread
+   MAINTAINER:=Jo-Philipp Wich <jow@openwrt.org>
+ endef
+ 
+diff --git a/package/network/services/ppp/Makefile b/package/network/services/ppp/Makefile
+index b320e30..15f5d79 100644
+--- a/package/network/services/ppp/Makefile
++++ b/package/network/services/ppp/Makefile
+@@ -19,7 +19,7 @@ PKG_MAINTAINER:=Felix Fietkau <nbd@openwrt.org>
+ 
+ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
+ 
+-PKG_BUILD_DEPENDS:=libpcap
++PKG_BUILD_DEPENDS:=libpcap 
+ 
+ PKG_BUILD_PARALLEL:=1
+ PKG_INSTALL:=1
+@@ -29,20 +29,21 @@ include $(INCLUDE_DIR)/package.mk
+ define Package/ppp/Default
+   SECTION:=net
+   CATEGORY:=Network
++  DEPENDS:=+libpthread
+   MAINTAINER:=Jo-Philipp Wich <xm@subsignal.org>
+   URL:=http://ppp.samba.org/
+ endef
+ 
+ define Package/ppp
+ $(call Package/ppp/Default)
+-  DEPENDS:=+kmod-ppp
++  DEPENDS:=+kmod-ppp +libpthread
+   TITLE:=PPP daemon
+   VARIANT:=default
+ endef
+ 
+ define Package/ppp-multilink
+ $(call Package/ppp/Default)
+-  DEPENDS:=+kmod-ppp
++  DEPENDS:=+kmod-ppp +libpthread
+   TITLE:=PPP daemon (with multilink support)
+   VARIANT:=multilink
+ endef
+@@ -99,10 +100,10 @@ endef
+ 
+ define Package/ppp-mod-pppol2tp
+ $(call Package/ppp/Default)
+-  DEPENDS:=@(PACKAGE_ppp||PACKAGE_ppp-multilink) +kmod-pppol2tp
++  DEPENDS:=@(PACKAGE_ppp||PACKAGE_ppp-multilink) +kmod-pppol2tp +libpthread
+   TITLE:=PPPoL2TP plugin
+ endef
+-
++ 
+ define Package/ppp-mod-pppol2tp/description
+ This package contains a PPPoL2TP (PPP over L2TP) plugin for ppp.
+ endef
+--- feeds/packages/net/tinyproxy/Makefile	2015-11-03 23:10:51.563049958 +0800
++++ feeds/packages/net/tinyproxy/Makefile	2015-11-03 23:10:59.542043717 +0800
+@@ -24,6 +24,7 @@ define Package/tinyproxy
+   SUBMENU:=Web Servers/Proxies
+   SECTION:=net
+   CATEGORY:=Network
++  DEPENDS:=+libpthread
+   TITLE:=Tinyproxy is a lightweight HTTP and HTTPS proxy
+   URL:=http://tinyproxy.sourceforge.net/
+ endef
+diff --git a/package/libs/libnfnetlink/Makefile b/package/libs/libnfnetlink/Makefile
+index f9ade14..467f98c 100644
+--- a/package/libs/libnfnetlink/Makefile
++++ b/package/libs/libnfnetlink/Makefile
+@@ -28,6 +28,7 @@ include $(INCLUDE_DIR)/package.mk
+ define Package/libnfnetlink
+   SECTION:=libs
+   CATEGORY:=Libraries
++  DEPENDS:=+libpthread
+   TITLE:=A low-level library for netfilter related kernel/userspace communication
+   URL:=http://netfilter.org/projects/libnfnetlink/
+ endef
+--- feeds/packages/net/etherwake/Makefile	2015-11-03 23:13:07.674154511 +0800
++++ feeds/packages/net/etherwake/Makefile	2015-11-03 23:13:13.526162317 +0800
+@@ -24,6 +24,7 @@ define Package/etherwake
+   CATEGORY:=Network
+   TITLE:=WoL client for magic packets via ethernet frames
+   URL:=http://ftp.debian.org/debian/pool/main/e/etherwake
++  DEPENDS:=+libpthread
+   MAINTAINER:=Peter Wagner <tripolar@gmx.at>
+ endef
+ 
+--- feeds/packages/libs/pcre/Makefile	2015-11-03 23:14:11.116241197 +0800
++++ feeds/packages/libs/pcre/Makefile	2015-11-03 23:14:17.186249701 +0800
+@@ -28,6 +28,7 @@ include $(INCLUDE_DIR)/package.mk
+ define Package/libpcre/default
+   SECTION:=libs
+   CATEGORY:=Libraries
++  DEPENDS:=+libpthread
+   URL:=http://www.pcre.org/
+ endef
+ 
+diff --git a/package/network/ipv6/6rd/Makefile b/package/network/ipv6/6rd/Makefile
+index 390e012..63312c1 100644
+--- a/package/network/ipv6/6rd/Makefile
++++ b/package/network/ipv6/6rd/Makefile
+@@ -16,7 +16,7 @@ include $(INCLUDE_DIR)/package.mk
+ define Package/6rd
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+kmod-ipv6 +kmod-sit
++  DEPENDS:=+kmod-ipv6 +kmod-sit +libpthread
+   TITLE:=6rd configuration support
+   MAINTAINER:=Stéphan Kochen <stephan@kochen.nl>
+   PKGARCH:=all
+diff --git a/package/network/ipv6/odhcp6c/Makefile b/package/network/ipv6/odhcp6c/Makefile
+index b2a4e89..d6e076a 100644
+--- a/package/network/ipv6/odhcp6c/Makefile
++++ b/package/network/ipv6/odhcp6c/Makefile
+@@ -34,7 +34,7 @@ define Package/odhcp6c
+   SECTION:=net
+   CATEGORY:=Network
+   TITLE:=Embedded DHCPv6-client for OpenWrt
+-  DEPENDS:=+kmod-ipv6
++  DEPENDS:=+kmod-ipv6 +libpthread
+ endef
+ 
+ define Package/odhcp6c/config
+diff --git a/package/network/services/igmpproxy/Makefile b/package/network/services/igmpproxy/Makefile
+index 47b995b..37219c0 100644
+--- a/package/network/services/igmpproxy/Makefile
++++ b/package/network/services/igmpproxy/Makefile
+@@ -24,7 +24,7 @@ define Package/igmpproxy
+   SECTION:=net
+   CATEGORY:=Network
+   SUBMENU:=Routing and Redirection
+-  DEPENDS:=+USE_EGLIBC:librt
++  DEPENDS:=+USE_EGLIBC:librt +libpthread
+   TITLE:=Multicast Routing Daemon
+   URL:=http://sourceforge.net/projects/igmpproxy
+ endef
+diff --git a/package/system/opkg/Makefile b/package/system/opkg/Makefile
+index 6dd3f31..6c35c63 100644
+--- a/package/system/opkg/Makefile
++++ b/package/system/opkg/Makefile
+@@ -36,6 +36,7 @@ include $(INCLUDE_DIR)/host-build.mk
+ define Package/opkg/Default
+   SECTION:=base
+   CATEGORY:=Base system
++  DEPENDS:=+libpthread
+   TITLE:=opkg package manager
+   MAINTAINER:=Jo-Philipp Wich <xm@subsignal.org>
+   URL:=http://wiki.openmoko.org/wiki/Opkg

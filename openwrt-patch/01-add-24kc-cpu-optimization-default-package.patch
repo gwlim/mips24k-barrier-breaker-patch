@@ -5,7 +5,7 @@
  DEFAULT_PACKAGES:=base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools
  # For router targets
 -DEFAULT_PACKAGES.router:=dnsmasq iptables ip6tables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall odhcpd odhcp6c
-+DEFAULT_PACKAGES.router:=dnsmasq iptables ip6tables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall odhcpd odhcp6c \
++DEFAULT_PACKAGES.router:=dnsmasq iptables ip6tables ppp ppp-mod-pppoe firewall odhcpd odhcp6c \
 +luci-ssl luci-app-firewall luci-app-sqm luci-app-mwan3 wget hostapd-utils \
 +luci-app-upnp luci-app-wol luci-i18n-english luci-app-ddns xl2tpd uqmi kmod-tun ds-lite \
 +luci-proto-3g luci-proto-ipv6 luci-proto-ppp luci-proto-relay libopenssl ppp-mod-pppol2tp ppp-mod-pptp \
