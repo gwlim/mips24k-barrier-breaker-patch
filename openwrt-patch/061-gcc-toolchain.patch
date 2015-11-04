@@ -5,7 +5,7 @@
  	--enable-languages=$(TARGET_LANGUAGES) \
  	--enable-shared \
 -	--enable-threads \
-+	--enable-threads=posix --enable-tls \
++	--enable-threads=posix \
 +	--enable-lto \
 +	--with-arch=mips32r2 \
 +	--with-mtune=24kc \
