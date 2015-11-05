@@ -1,6 +1,6 @@
 --- a/feeds/luci/modules/base/luasrc/view/sysauth.htm	2015-11-04 21:45:15.000000000 +0800
 +++ b/feeds/luci/modules/base/luasrc/view/sysauth.htm	2015-11-04 21:50:53.722875979 +0800
-@@ -27,7 +27,7 @@ You may obtain a copy of the License at
+@@ -27,13 +27,13 @@ You may obtain a copy of the License at
  			<div class="cbi-value">
  				<label class="cbi-value-title"><%:Username%></label>
  				<div class="cbi-value-field">
@@ -9,3 +9,10 @@
  				</div>
  			</div>
  			<div class="cbi-value cbi-value-last">
+ 				<label class="cbi-value-title"><%:Password%></label>
+ 				<div class="cbi-value-field">
+-					<input id="focus_password" class="cbi-input-password" type="password" name="password" />
++					<input class="cbi-input-password" type="password" name="password" />
+ 				</div>
+ 			</div>
+ 		</fieldset></fieldset>
