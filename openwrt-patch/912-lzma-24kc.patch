@@ -10,7 +10,7 @@
 -		  -mabi=32 -march=mips32r2 \
 -		  -Wa,-32 -Wa,-march=mips32r2 -Wa,-mips32r2 -Wa,--trap
 +		  -mabi=32 -march=mips32r2 -mtune=24kc -mplt -mno-mips16 -mno-interlink-mips16 -mno-branch-likely -fno-caller-saves -msym32 \
-+		  -Wa,-32 -Wa,-march=mips32r2 -mtune=24kc -Wa,-mips32r2 -mtune=24kc -Wa,--trap
++		  -Wa,-32 -Wa,-march=mips32r2 -mtune=24kc -mplt -mno-mips16 -mno-interlink-mips16 -mno-branch-likely -fno-caller-saves -msym32 -Wa,-mips32r2 -mtune=24kc -mplt -mno-mips16 -mno-interlink-mips16 -mno-branch-likely -fno-caller-saves -msym32 -Wa,--trap
  CFLAGS		+= -D_LZMA_PROB32
  
  ASFLAGS		= $(CFLAGS) -D__ASSEMBLY__
