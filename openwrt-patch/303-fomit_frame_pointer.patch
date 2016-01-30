@@ -5,7 +5,7 @@
   #
  -cflags-y			+= -G 0 -mno-abicalls -fno-pic -pipe
 -+cflags-y			+= -G 0 -mno-abicalls -fno-pic -pipe -mno-branch-likely
-++cflags-y			+= -G 0 -mno-abicalls -fno-pic -pipe -mno-branch-likely -fno-caller-saves -mno-mips16 -mno-interlink-mips16 -mplt -msym32 -fomit-frame-pointer -mno-long-calls -fsee -finline -mips32r2 -mtune=24kc -Os 
+++cflags-y			+= -mno-abicalls -fno-pic -pipe -mno-branch-likely -fno-caller-saves -mno-mips16 -mno-interlink-mips16 -mplt -msym32 -fomit-frame-pointer -mno-long-calls -mips32r2 -mtune=24kc -Os 
   cflags-y			+= -msoft-float
   LDFLAGS_vmlinux			+= -G 0 -static -n -nostdlib --gc-sections --sort-section=name
   KBUILD_AFLAGS_MODULE		+= -mlong-calls
